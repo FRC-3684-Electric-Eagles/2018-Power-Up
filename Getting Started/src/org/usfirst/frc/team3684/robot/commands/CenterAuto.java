@@ -1,11 +1,12 @@
 package org.usfirst.frc.team3684.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class CenterAuto extends Command {
+public class CenterAuto extends CommandGroup {
 
     public CenterAuto() {
         // Use requires() here to declare subsystem dependencies

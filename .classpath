@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Getting Started/src"/>
+	<classpathentry kind="lib" path="Getting Started/build/jars/cscore.jar"/>
+	<classpathentry kind="lib" path="Getting Started/build/jars/CTRE_Phoenix.jar"/>
+	<classpathentry kind="lib" path="Getting Started/build/jars/ntcore.jar"/>
+	<classpathentry kind="lib" path="Getting Started/build/jars/opencv.jar"/>
+	<classpathentry kind="lib" path="Getting Started/build/jars/WPILib.jar"/>
+	<classpathentry kind="lib" path="Getting Started/build/jars/wpiutil.jar"/>
+	<classpathentry kind="lib" path="Getting Started/dist/FRCUserProgram.jar"/>
+	<classpathentry kind="output" path="Getting Started/bin"/>
+</classpath>

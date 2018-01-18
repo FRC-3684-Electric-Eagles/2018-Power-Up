@@ -15,10 +15,8 @@ import org.usfirst.frc.team3684.robot.commands.DriveForward;
 import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
 import org.usfirst.frc.team3684.robot.commands.LeftAuto;
 import org.usfirst.frc.team3684.robot.commands.RightAuto;
-import org.usfirst.frc.team3684.robot.subsystems.drivetrain;
+import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -34,25 +32,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 		Command m_autonomousCommand;
-		SendableChooser<Command> m_chooser= new SendableChooser<>();
+		Command m_teleopCommand;
+		SendableChooser m_chooser= new SendableChooser<>();
 	
-	   SpeedController m_frontLeft = new CANTalon(0);
-	   SpeedController m_rearLeft = new CANTalon(1);
-	   SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_rearLeft);
-
-	   SpeedController m_frontRight = new CANTalon(2);
-	   SpeedController m_rearRight = new CANTalon(3);
-	   SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_rearRight);
-       
-	   SpeedController m_clawbase = new CANTalon (4);
-	   SpeedController m_clawmid = new CANTalon (5);
-	   SpeedController m_clawgrip =new CANTalon (6);
-	   SpeedController m_Winch = new CANTalon (7);
-	   //DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
 
 	private Timer m_timer = new Timer();
 	public static OI m_oi;
-	public static drivetrain driveTrain;
+	public static Drivetrain driveTrain;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -61,7 +47,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		driveTrain= new drivetrain();
+		driveTrain= new Drivetrain();
 		m_chooser.addDefault("Default Auto", new DriveForward());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		m_chooser.addObject ("Left Auto", new LeftAuto());
@@ -77,12 +63,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		m_timer.reset();
+		m_timer.start();
+		m_autonomousCommand = (Command) m_chooser.getSelected();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 	}
-		m_autonomousCommand = m_chooser.getSelected();
-		m_timer.reset();
-		m_timer.start();
+		else {
+			m_autonomousCommand= new DriveForward(); 
+			m_autonomousCommand.start();
+		}
+		
 	}
 
 	/**
@@ -101,6 +92,9 @@ public class Robot extends IterativeRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		 m_teleopCommand = new DriveTrain_TankDrive();
+		 m_teleopCommand.start();
+		
 	}
 
 	/**
@@ -108,16 +102,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+
 		Scheduler.getInstance().run();
-    	addSequential(new DriveTrain_TankDrive());
-
 		
-		//m_drive.tankDrive(m_leftstick.getX(), m_rightstick.getX());
+
 	}
-
-	private void addSequential(DriveTrain_TankDrive driveTrain_TankDrive) {
-		// TODO Auto-generated method stub
-		
+	public void disabledInit() {
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+		}
+		if (m_teleopCommand != null) {
+			m_teleopCommand.cancel();
+		}
+	}
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
 	}
 
 	/**

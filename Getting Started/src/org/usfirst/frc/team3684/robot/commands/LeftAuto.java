@@ -1,11 +1,12 @@
 package org.usfirst.frc.team3684.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LeftAuto extends Command {
+public class LeftAuto extends CommandGroup {
 
     public LeftAuto() {
         // Use requires() here to declare subsystem dependencies

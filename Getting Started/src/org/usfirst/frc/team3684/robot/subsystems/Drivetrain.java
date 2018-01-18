@@ -6,12 +6,22 @@ import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
 /**
  *
  */
-public class drivetrain extends Subsystem {
+public class Drivetrain extends Subsystem {
 	
-	CANTalon leftMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_LEFT);
-	CANTalon rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
-	CANTalon backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKLEFT);
-	CANTalon backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
+	public CANTalon leftMotor;
+	public CANTalon rightMotor;
+	public CANTalon backleftMotor;
+	public CANTalon backrightMotor;
+	
+	public Drivetrain() {
+	
+		leftMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_LEFT);
+		rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
+		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKLEFT);
+		backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
+		
+	}
+	
 	  public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new DriveTrain_TankDrive());
@@ -33,6 +43,14 @@ public class drivetrain extends Subsystem {
     	rightMotor.set(right);		
     	backrightMotor.set(right);
 	}
+    
+    public void stop() {
+    	leftMotor.set(0);
+    	backleftMotor.set(0);
+    	rightMotor.set(0);		
+    	backrightMotor.set(0);
+    }
+    
     private double safetyTest(double motorValue) {
         motorValue = (motorValue < -1) ? -1 : motorValue;
         motorValue = (motorValue > 1) ? 1 : motorValue;

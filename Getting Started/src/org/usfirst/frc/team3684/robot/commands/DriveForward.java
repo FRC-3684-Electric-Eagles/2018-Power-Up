@@ -3,11 +3,12 @@ package org.usfirst.frc.team3684.robot.commands;
 import org.usfirst.frc.team3684.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class DriveForward extends Command {
+public class DriveForward extends CommandGroup {
 
     public DriveForward() {
         // Use requires() here to declare subsystem dependencies
