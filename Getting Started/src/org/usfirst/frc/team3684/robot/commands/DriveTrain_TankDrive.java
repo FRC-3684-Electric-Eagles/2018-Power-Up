@@ -32,7 +32,7 @@ public class DriveTrain_TankDrive extends Command {
         leftPower = (Math.abs(leftPower) < deadzone)? 0 : leftPower;
         rightPower = (Math.abs(rightPower) < deadzone)? 0 : rightPower;
         
-        Robot.driveTrain.setMotors(leftPower, rightPower);
+        Robot.driveTrain.setMotors(-leftPower, rightPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

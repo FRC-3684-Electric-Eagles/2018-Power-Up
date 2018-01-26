@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3684.robot.subsystems;
 
-import org.usfirst.frc.team3684.robot.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.CANTalon;
 import org.usfirst.frc.team3684.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
