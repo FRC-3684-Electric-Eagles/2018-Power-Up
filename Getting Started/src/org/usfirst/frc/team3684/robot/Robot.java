@@ -15,7 +15,10 @@ import org.usfirst.frc.team3684.robot.commands.DriveForward;
 import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
 import org.usfirst.frc.team3684.robot.commands.LeftAuto;
 import org.usfirst.frc.team3684.robot.commands.RightAuto;
+import org.usfirst.frc.team3684.robot.subsystems.ClawRollers;
 import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3684.robot.subsystems.Forklift;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -39,6 +42,8 @@ public class Robot extends IterativeRobot {
 	private Timer m_timer = new Timer();
 	public static OI m_oi;
 	public static Drivetrain driveTrain;
+	public static Forklift forkLift;
+	public static ClawRollers clawRollers;
 
 	/**
 	 * This function is run when the robot is first started up and should be

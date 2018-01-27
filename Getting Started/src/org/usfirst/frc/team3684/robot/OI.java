@@ -7,6 +7,10 @@
 
 package org.usfirst.frc.team3684.robot;
 
+import org.usfirst.frc.team3684.robot.commands.ClawOutput;
+import org.usfirst.frc.team3684.robot.commands.MoveLiftDOWN;
+import org.usfirst.frc.team3684.robot.commands.MoveLiftUP;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -20,12 +24,23 @@ public class OI {
 	
 	public Joystick m_leftstick= new Joystick(RobotMap.LEFT_JOYSTICK_USB_PORT_0);
 	public Joystick m_rightstick= new Joystick(RobotMap.RIGHT_JOYSTICK_USB_PORT_1);
-	public Button m_button0= new JoystickButton(m_leftstick, RobotMap.CLAWBUTTONopen);
-	public Button m_button1= new JoystickButton (m_leftstick, RobotMap.CLAWBUTTONclose);
-	public Button m_button2= new JoystickButton (m_rightstick, RobotMap.ForkliftUp);
-	public Button m_button3= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
-	public Button m_button4= new JoystickButton (m_rightstick, RobotMap.ForkliftExtend);
-	public Button m_button5= new JoystickButton (m_rightstick, RobotMap.ForkliftDetract);
+	
+	
+	
+	
+	public OI() {
+	//creating buttons
+	Button left_trigger= new JoystickButton(m_leftstick, RobotMap.CLAWBUTTONclose);
+	Button rightbutton0 = new JoystickButton (m_rightstick, RobotMap.ForkliftUp);
+	Button rightbutton1= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
+	
+	
+	//binding buttons to commands
+	left_trigger.whileHeld(new ClawOutput());
+	rightbutton0.whileHeld(new MoveLiftUP());
+	rightbutton1.whileHeld(new MoveLiftDOWN());
+	
+	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
