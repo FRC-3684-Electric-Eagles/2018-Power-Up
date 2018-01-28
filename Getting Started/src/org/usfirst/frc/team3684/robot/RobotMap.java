@@ -29,7 +29,10 @@ public class RobotMap {
 	public static final int CLAWBUTTONopen = 2;
 	public static final int CLAWBUTTONclose =3;
 	public static final int ForkliftUp =4;
-	public static final int ForkliftDown =5;
+	public static final int ForkliftDown =6;
+	public static final int Turn_Right = 5;
+	public static final int Turn_Left = 5;
+			
 	
 	public static int DRIVETRAIN_Talon_LEFT = 0;
 	public static int DRIVETRAIN_Talon_RIGHT = 1;

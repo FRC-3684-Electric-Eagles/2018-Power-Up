@@ -19,6 +19,8 @@ import org.usfirst.frc.team3684.robot.subsystems.ClawRollers;
 import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3684.robot.subsystems.Forklift;
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -36,8 +38,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 		Command m_autonomousCommand;
 		Command m_teleopCommand;
-		SendableChooser m_chooser= new SendableChooser<>();
-	
+		SendableChooser m_autoposition= new SendableChooser<>();
+		SendableChooser m_scaleorswitch= new SendableChooser<>();
+		
+
+	public static boolean scaleright;
+	public static boolean switchright;
+	public static boolean switchselected;
 
 	private Timer m_timer = new Timer();
 	public static OI m_oi;
@@ -51,15 +58,19 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
 		driveTrain= new Drivetrain();
-		m_chooser.addDefault("Default Auto", new DriveForward());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		m_chooser.addObject ("Left Auto", new LeftAuto());
-		m_chooser.addObject ("Center Auto", new CenterAuto());
-		m_chooser.addObject ("Right Auto", new RightAuto());
-		SmartDashboard.putData("Auto mode", m_chooser);
-		
+		forkLift= new Forklift();
+		clawRollers = new ClawRollers();
+		m_oi = new OI();
+		m_scaleorswitch.addDefault("Switch", true);
+		m_scaleorswitch.addObject("Scale", false);
+		m_autoposition.addDefault("Driveforward", new DriveForward());
+		m_autoposition.addObject ("Left", new LeftAuto());
+		m_autoposition.addObject ("Center", new CenterAuto());
+		m_autoposition.addObject ("Right", new RightAuto());
+		SmartDashboard.putData("Auto mode", m_autoposition);
+		CameraServer server = CameraServer.getInstance();
+		server.startAutomaticCapture();
 		
 	}
 	
@@ -70,7 +81,24 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		m_timer.reset();
 		m_timer.start();
-		m_autonomousCommand = (Command) m_chooser.getSelected();
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData.charAt(0) == 'L')
+		{
+			switchright = false;
+				
+		} else {
+			switchright = true;
+		}
+		if(gameData.charAt(1) == 'L')
+		{
+			scaleright = false;
+		}
+		else {
+			scaleright = true;
+		}
+		switchselected = (boolean) m_scaleorswitch.getSelected();
+		m_autonomousCommand = (Command) m_autoposition.getSelected();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 	}

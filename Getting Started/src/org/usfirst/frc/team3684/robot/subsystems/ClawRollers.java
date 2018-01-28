@@ -10,9 +10,13 @@ import org.usfirst.frc.team3684.robot.commands.ClawIntake;
  *
  */
 public class ClawRollers extends Subsystem {
-	CANTalon m_clawmotor1 = new CANTalon (RobotMap.ClawMotor1);
-	CANTalon m_clawmotor2 = new CANTalon (RobotMap.ClawMotor2);
-
+	
+	public CANTalon m_clawmotor1;
+	public CANTalon m_clawmotor2;
+	public ClawRollers() {
+		m_clawmotor1 = new CANTalon (RobotMap.ClawMotor1);
+		m_clawmotor2 = new CANTalon (RobotMap.ClawMotor2);
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

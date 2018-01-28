@@ -10,6 +10,8 @@ package org.usfirst.frc.team3684.robot;
 import org.usfirst.frc.team3684.robot.commands.ClawOutput;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftDOWN;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftUP;
+import org.usfirst.frc.team3684.robot.commands.Turnleft;
+import org.usfirst.frc.team3684.robot.commands.Turnright;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -33,12 +35,15 @@ public class OI {
 	Button left_trigger= new JoystickButton(m_leftstick, RobotMap.CLAWBUTTONclose);
 	Button rightbutton0 = new JoystickButton (m_rightstick, RobotMap.ForkliftUp);
 	Button rightbutton1= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
-	
+	Button rightbutton5= new JoystickButton (m_rightstick, RobotMap.Turn_Right);
+	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
 	
 	//binding buttons to commands
 	left_trigger.whileHeld(new ClawOutput());
 	rightbutton0.whileHeld(new MoveLiftUP());
 	rightbutton1.whileHeld(new MoveLiftDOWN());
+	rightbutton5.whileHeld(new Turnright());
+	leftbutton5.whileHeld(new Turnleft());
 	
 	}
 	//// CREATING BUTTONS

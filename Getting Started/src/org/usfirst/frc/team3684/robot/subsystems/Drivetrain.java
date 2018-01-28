@@ -65,6 +65,7 @@ public class Drivetrain extends Subsystem {
     private double scaleRight(double right) {
     	return 1.0 * right;
     }
+    
 
 //public final CANTalon leftFrontDrive;
 //public final CANTalon leftRearDrive;

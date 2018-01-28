@@ -11,11 +11,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Forklift extends Subsystem {
 	CANTalon m_LiftUP = new CANTalon(RobotMap.LiftMotorUp);
 	CANTalon m_LiftDOWN = new CANTalon(RobotMap.LiftMotorDown);
-	CANTalon m_clawmotor1 = new CANTalon (RobotMap.ClawMotor1);
-	CANTalon m_clawmotor2 = new CANTalon (RobotMap.ClawMotor2);
-
+	
+	public Forklift() {
+		
+		m_LiftUP = new CANTalon(RobotMap.LiftMotorUp);
+		m_LiftDOWN = new CANTalon(RobotMap.LiftMotorDown);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	}
 
 	 public void initDefaultCommand() {
 	        // Set the default command for a subsystem here.
