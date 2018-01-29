@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3684.robot;
 
+import org.usfirst.frc.team3684.robot.commands.ClawIntake;
 import org.usfirst.frc.team3684.robot.commands.ClawOutput;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftDOWN;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftUP;
@@ -37,7 +38,7 @@ public class OI {
 	Button rightbutton1= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
 	Button rightbutton5= new JoystickButton (m_rightstick, RobotMap.Turn_Right);
 	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
-	
+	Button leftbutton1= new JoystickButton (m_leftstick, RobotMap.CLAWBUTTONopen);
 	//binding buttons to commands
 	left_trigger.whileHeld(new ClawOutput());
 	rightbutton0.whileHeld(new MoveLiftUP());

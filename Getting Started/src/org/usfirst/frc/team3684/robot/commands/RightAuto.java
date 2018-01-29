@@ -3,6 +3,7 @@ package org.usfirst.frc.team3684.robot.commands;
 import org.usfirst.frc.team3684.robot.*;
 import org.usfirst.frc.team3684.robot.commands.LeftAuto.LeftAutoKind;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -59,12 +60,42 @@ public class RightAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnRightScale:
+    		new ClawIntake();
+    		Robot.driveTrain.setMotors(-1, 1);
+    		Robot.forkLift.setMotors(.25, .25);
+    		Timer.delay(2.5);
+    		Robot.driveTrain.setMotors(0, 0);
+    		new ClawOutput();
+    		Timer.delay(1);
+    		new ClawIntake();
+    		Robot.forkLift.setMotors(-.25, -.25);
+    		Robot.driveTrain.setMotors(.5, .5);
+    		Timer.delay(.75);
+    		Robot.driveTrain.setMotors(0, 0);
+    		Timer.delay(1.25);
+    		Robot.forkLift.setMotors(0, 0);
+    		
     		//put code here for scale
     		break;
     	case placeOnRightSwitch:
+    		new ClawIntake();
+    		Robot.driveTrain.setMotors(-.25, .25);
+    		Robot.forkLift.setMotors(.25, .25);
+    		Timer.delay(2);
+    		Robot.driveTrain.setMotors(.5, .5);
+    		Robot.forkLift.setMotors(0, 0);
+    		Timer.delay(1);
+    		new ClawOutput();
+    		Timer.delay(1);
+    		new ClawIntake();
     		//put code here for switch
     		break;
     	case driveForward:
+    		new ClawIntake();
+    		Robot.driveTrain.setMotors(-.25, .25);
+    		Timer.delay(4);
+    		Robot.driveTrain.setMotors(0, 0);
+    		//put code here to drive forward
     		//put code here to drive forward
     	default:
     		}
