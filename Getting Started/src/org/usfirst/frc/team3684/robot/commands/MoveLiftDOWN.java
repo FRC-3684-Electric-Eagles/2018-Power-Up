@@ -21,7 +21,7 @@ public class MoveLiftDOWN extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.forkLift.setMotors(-1,-1);
+    	Robot.forkLift.setMotors(-.25,-.25);
     }
 
     // Make this return true when this Command no longer needs to run execute()

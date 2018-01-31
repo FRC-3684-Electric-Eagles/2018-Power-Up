@@ -9,11 +9,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Forklift extends Subsystem {
-	CANTalon m_LiftUP = new CANTalon(RobotMap.LiftMotorUp);
-	CANTalon m_LiftDOWN = new CANTalon(RobotMap.LiftMotorDown);
-	
+	public CANTalon m_LiftUP;
+	public CANTalon m_LiftDOWN; 
 	public Forklift() {
-		
 		m_LiftUP = new CANTalon(RobotMap.LiftMotorUp);
 		m_LiftDOWN = new CANTalon(RobotMap.LiftMotorDown);
     // Put methods for controlling this subsystem
@@ -28,7 +26,7 @@ public class Forklift extends Subsystem {
 	    	up = scaleup(up);
 	    	down = scaledown(down);
 	    	
-	    	setMotors(up, down);
+	    	setMotorsRaw(up, down);
 	    }
 	    
 	    public void setMotorsRaw(double up, double down) {

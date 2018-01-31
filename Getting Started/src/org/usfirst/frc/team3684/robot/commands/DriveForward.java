@@ -2,6 +2,7 @@ package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -23,7 +24,10 @@ public class DriveForward extends CommandGroup {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.setMotors(.5, .5);
+    	Robot.driveTrain.setMotors(1, 1);
+    	Timer.delay(1);
+    	Robot.driveTrain.setMotors(0, 0);
+    	//Test to see how far the robot goes after one second
     }
 
     // Make this return true when this Command no longer needs to run execute()

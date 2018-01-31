@@ -69,6 +69,7 @@ public class Robot extends IterativeRobot {
 		m_autoposition.addObject ("Center", new CenterAuto());
 		m_autoposition.addObject ("Right", new RightAuto());
 		SmartDashboard.putData("Auto mode", m_autoposition);
+		SmartDashboard.putData("Scale or switch prefered", m_scaleorswitch);
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
 		
