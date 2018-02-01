@@ -2,10 +2,12 @@ package org.usfirst.frc.team3684.robot.subsystems;
 
 import org.usfirst.frc.team3684.robot.RobotMap;
 
+
 import com.ctre.phoenix.motorcontrol.can.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3684.robot.commands.ClawIntake;
+//see forklift.java
 /**
  *
  */
@@ -24,6 +26,7 @@ public class ClawRollers extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new ClawIntake());
+    	//claw intake will run unless claw output is running
     }
     
     public void setMotors(double left, double right) {

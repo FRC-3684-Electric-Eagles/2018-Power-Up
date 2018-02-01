@@ -9,6 +9,7 @@ package org.usfirst.frc.team3684.robot;
 
 import org.usfirst.frc.team3684.robot.commands.ClawIntake;
 import org.usfirst.frc.team3684.robot.commands.ClawOutput;
+import org.usfirst.frc.team3684.robot.commands.ClimbWithLift;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftDOWN;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftUP;
 import org.usfirst.frc.team3684.robot.commands.Turnleft;
@@ -27,24 +28,27 @@ public class OI {
 	
 	public Joystick m_leftstick= new Joystick(RobotMap.LEFT_JOYSTICK_USB_PORT_0);
 	public Joystick m_rightstick= new Joystick(RobotMap.RIGHT_JOYSTICK_USB_PORT_1);
-	
+	//Joysticks here
 	
 	
 	
 	public OI() {
 	//creating buttons
 	Button left_trigger= new JoystickButton(m_leftstick, RobotMap.CLAWBUTTONclose);
+	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
+	Button leftbutton1= new JoystickButton (m_leftstick, RobotMap.CLAWBUTTONopen);
+	Button rightbutton3 = new JoystickButton (m_rightstick, RobotMap.Climb);
 	Button rightbutton0 = new JoystickButton (m_rightstick, RobotMap.ForkliftUp);
 	Button right_trigger= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
 	Button rightbutton5= new JoystickButton (m_rightstick, RobotMap.Turn_Right);
-	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
-	Button leftbutton1= new JoystickButton (m_leftstick, RobotMap.CLAWBUTTONopen);
 	//binding buttons to commands
 	left_trigger.whileHeld(new ClawOutput());
+	leftbutton5.whileHeld(new Turnleft());
 	rightbutton0.whileHeld(new MoveLiftUP());
 	right_trigger.whileHeld(new MoveLiftDOWN());
 	rightbutton5.whileHeld(new Turnright());
-	leftbutton5.whileHeld(new Turnleft());
+	rightbutton3.whileHeld(new ClimbWithLift());
+	//these are all held, so commands will run until you let go. 
 	
 	}
 	//// CREATING BUTTONS

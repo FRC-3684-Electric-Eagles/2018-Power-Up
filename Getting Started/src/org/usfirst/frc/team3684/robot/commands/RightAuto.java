@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * 
  */
 public class RightAuto extends CommandGroup {
 
@@ -28,7 +28,7 @@ public class RightAuto extends CommandGroup {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (Robot.switchselected) {
-    		if (Robot.switchright) {
+    		if (Robot.ourswitchright) {
     			autoKind = RightAutoKind.placeOnRightSwitch;
     			//if we are on the right, prefer the switch, and the switch is on the right, place a block on the right switch.
     		} else {
@@ -45,7 +45,7 @@ public class RightAuto extends CommandGroup {
     			autoKind = RightAutoKind.placeOnRightScale;
     			//If we are on the right, prefer the scale, and the scale is on the right, place a block on the right scale.
     		}else {
-    			if (Robot.switchright) {
+    			if (Robot.ourswitchright) {
     				autoKind = RightAutoKind.placeOnRightSwitch;
     				//if we are on the right, prefer the scale, the scale is on the left, and the switch is on the right, place a block on the right switch.
     			}else {

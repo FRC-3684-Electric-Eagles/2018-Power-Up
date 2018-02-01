@@ -30,18 +30,20 @@ public class Drivetrain extends Subsystem {
 	public void setMotors(double left, double right) {
     	left = scaleLeft(left);
     	right = scaleRight(right);
-    	
+    	//adding a scale which can be changed in "scaleleft" and "scaleright"
     	setMotorsRaw(left, right);
+    	//telling it to go to the next public void
     }
     
     public void setMotorsRaw(double left, double right) {
     	left = safetyTest(left);
     	right = safetyTest(right);
-    	
+    	//testing for... "safety"? What is this alien concept?
     	leftMotor.set(left);
     	backleftMotor.set(left);
     	rightMotor.set(right);		
     	backrightMotor.set(right);
+    	//actually setting the motors to what I told them to do
 	}
     
     public void stop() {
@@ -49,6 +51,7 @@ public class Drivetrain extends Subsystem {
     	backleftMotor.set(0);
     	rightMotor.set(0);		
     	backrightMotor.set(0);
+    	//stopping the motors. 
     }
     
     private double safetyTest(double motorValue) {
@@ -56,6 +59,7 @@ public class Drivetrain extends Subsystem {
         motorValue = (motorValue > 1) ? 1 : motorValue;
         
         return motorValue;
+        //apparently this is a safety test. who knew. 
     }
     
     private double scaleLeft(double left) {
@@ -64,13 +68,9 @@ public class Drivetrain extends Subsystem {
     
     private double scaleRight(double right) {
     	return 1.0 * right;
-    }
+    } // the scale of motors
     
 
-//public final CANTalon leftFrontDrive;
-//public final CANTalon leftRearDrive;
-//public final CANTalon rightFrontDrive;
-//public final CANTalon rightRearDrive;
 
 
     // Put methods for controlling this subsystem

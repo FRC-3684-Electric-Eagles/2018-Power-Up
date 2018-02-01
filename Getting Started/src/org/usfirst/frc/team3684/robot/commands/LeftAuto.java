@@ -15,9 +15,9 @@ public class LeftAuto extends CommandGroup {
 		placeOnLeftSwitch,
 		driveForward
 	}
-	
+	//no idea what an enum is, I think this is a list of things to choose from, kinda like a boolean but with more than one option. 
 	public LeftAutoKind autoKind;
-
+	//naming the LeftAutoKind as autoKind
     public LeftAuto() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,7 +26,7 @@ public class LeftAuto extends CommandGroup {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (Robot.switchselected) {
-    		if (Robot.switchright) {
+    		if (Robot.ourswitchright) {
     			// if we are on left, prefer the switch, and the switch is on the right, check for the scale.
     			if (Robot.scaleright) {
     				autoKind = LeftAutoKind.driveForward;
@@ -43,7 +43,7 @@ public class LeftAuto extends CommandGroup {
 			}
     	} else {
     		if (Robot.scaleright) {
-    			if (Robot.switchright) {
+    			if (Robot.ourswitchright) {
     				autoKind = LeftAutoKind.driveForward;
     				//if we are on the left, prefer the scale, and the scale is on the right, and the switch is on the right, drive forward.
     			} else {
@@ -104,8 +104,6 @@ public class LeftAuto extends CommandGroup {
     		Timer.delay(1);
     		new ClawIntake();
     		//restart the claw intake
-    		
-    		//put code here for switch
     		break;
     	case driveForward:
     		new ClawIntake();

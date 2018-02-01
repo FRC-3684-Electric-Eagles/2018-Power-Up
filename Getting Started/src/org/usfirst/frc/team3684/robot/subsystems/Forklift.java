@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.CANTalon;
 import org.usfirst.frc.team3684.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+//this entire damn thing is basically exactly the same as Drivetrain.java cause i'm lazy as hell, go there for comments
 /**
  *
  */

@@ -38,19 +38,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 		Command m_autonomousCommand;
 		Command m_teleopCommand;
+		//idk what this does tbh
 		SendableChooser m_autoposition= new SendableChooser<>();
 		SendableChooser m_scaleorswitch= new SendableChooser<>();
+		//making our autoposition and scale/switch preference as choosables
 		
-
 	public static boolean scaleright;
-	public static boolean switchright;
+	public static boolean ourswitchright;
+	public static boolean theirswitchright;
 	public static boolean switchselected;
+	//adding booleans for autonomous to use switch or scale.
 
 	private Timer m_timer = new Timer();
+	//starting timer
 	public static OI m_oi;
+	//Instantiating OI
 	public static Drivetrain driveTrain;
 	public static Forklift forkLift;
 	public static ClawRollers clawRollers;
+	//Instantiating subsystems
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -61,17 +67,26 @@ public class Robot extends IterativeRobot {
 		driveTrain= new Drivetrain();
 		forkLift= new Forklift();
 		clawRollers = new ClawRollers();
+		//initializing subsystems
 		m_oi = new OI();
+		//initializing OI
 		m_scaleorswitch.addDefault("Switch", true);
 		m_scaleorswitch.addObject("Scale", false);
 		m_autoposition.addDefault("Driveforward", new DriveForward());
 		m_autoposition.addObject ("Left", new LeftAuto());
 		m_autoposition.addObject ("Center", new CenterAuto());
 		m_autoposition.addObject ("Right", new RightAuto());
-		SmartDashboard.putData("Auto mode", m_autoposition);
-		SmartDashboard.putData("Scale or switch prefered", m_scaleorswitch);
+		SmartDashboard.putData("Auto Position", m_autoposition);
+		SmartDashboard.putData("Scale or switch preferred?", m_scaleorswitch);
+		SmartDashboard.putBoolean("ourswitchonright?", ourswitchright);
+		SmartDashboard.putBoolean("scaleonright?", scaleright);
+		SmartDashboard.putBoolean("theirswitchonright?", theirswitchright);
+		SmartDashboard.putData(clawRollers);
+		SmartDashboard.putData(driveTrain);
+		SmartDashboard.putData(forkLift);
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
+		//adding stuff to smartDashboard
 		
 	}
 	
@@ -82,14 +97,15 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		m_timer.reset();
 		m_timer.start();
+		//restarting timer
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if(gameData.charAt(0) == 'L')
 		{
-			switchright = false;
+			ourswitchright = false;
 				
 		} else {
-			switchright = true;
+			ourswitchright = true;
 		}
 		if(gameData.charAt(1) == 'L')
 		{
@@ -97,6 +113,13 @@ public class Robot extends IterativeRobot {
 		}
 		else {
 			scaleright = true;
+		}
+		if(gameData.charAt(2) == 'L')
+		{
+			theirswitchright = false;
+		}
+		else {
+			theirswitchright = true;
 		}
 		switchselected = (boolean) m_scaleorswitch.getSelected();
 		m_autonomousCommand = (Command) m_autoposition.getSelected();
@@ -106,7 +129,7 @@ public class Robot extends IterativeRobot {
 		else {
 			m_autonomousCommand= new DriveForward(); 
 			m_autonomousCommand.start();
-		}
+		}//adding booleans for use in autonomous as well as choosing which autonomous to use
 		
 	}
 
@@ -138,7 +161,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 
 		Scheduler.getInstance().run();
-		
+		//again i honestly don't know what this does, I think that it is used for command scheduling?
 
 	}
 	public void disabledInit() {
@@ -147,10 +170,11 @@ public class Robot extends IterativeRobot {
 		}
 		if (m_teleopCommand != null) {
 			m_teleopCommand.cancel();
-		}
+		}//disable auto command AND teleop command.
 	}
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		//see above
 	}
 
 	/**
@@ -159,6 +183,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		
-		
+		//i don't know what to put here.
 	}
 }

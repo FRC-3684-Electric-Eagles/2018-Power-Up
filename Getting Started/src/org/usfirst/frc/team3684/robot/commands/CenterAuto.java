@@ -24,10 +24,12 @@ public class CenterAuto extends CommandGroup {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.switchright) {
+    	if (Robot.ourswitchright) {
     		autoKind = CenterAutoKind.placeOnRightSwitch;
+    		//if the switch is on the right, place it on the right. 
     	} else {
     		autoKind = CenterAutoKind.placeOnLeftSwitch;
+    		//if the switch is on the left, place it on the left
     	}
     	
     }
@@ -39,33 +41,45 @@ public class CenterAuto extends CommandGroup {
     		new ClawIntake();
     		Robot.driveTrain.setMotors(.5, .5);
     		Robot.forkLift.setMotors(.25, .25);
+    		//turn claw on, turn left, and start the claw
     		Timer.delay(1);
     		Robot.driveTrain.setMotors(-.5, .5);
+    		//move forward while turned to the left
     		Timer.delay(1);
     		Robot.forkLift.setMotors(0,0);
     		Robot.driveTrain.setMotors(-.5, -.5);
+    		//stop the forklift and turn to the right
     		Timer.delay(1);
-    		Robot.driveTrain.setMotors(.5, .5);
+    		Robot.driveTrain.setMotors(-.5, .5);
+    		//drive forward
     		Timer.delay(2);
     		new ClawOutput();
+    		//shoot box
     		Timer.delay(1);
     		new ClawIntake();
+    		//turn claw back on
     		break;
     	case placeOnRightSwitch:
     		new ClawIntake();
     		Robot.driveTrain.setMotors(-.5, -.5);
     		Robot.forkLift.setMotors(.25, .25);
+    		//start claw, turn right, move lift up
     		Timer.delay(1);
     		Robot.driveTrain.setMotors(-.5, .5);
+    		//go forward
     		Timer.delay(1);
     		Robot.forkLift.setMotors(0,0);
     		Robot.driveTrain.setMotors(.5, .5);
+    		//stop forklift, turn left
     		Timer.delay(1);
-    		Robot.driveTrain.setMotors(.5, .5);
+    		Robot.driveTrain.setMotors(-.5, .5);
+    		//drive forward
     		Timer.delay(2);
     		new ClawOutput();
+    		//shoot a box
     		Timer.delay(1);
     		new ClawIntake();
+    		//restart claw
     		//put code here for right switch
     		break;
     	case driveForward:
@@ -73,7 +87,7 @@ public class CenterAuto extends CommandGroup {
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		//put code here to drive forward
+    		//something must be broken if this happens, but just in case it's still here. 
     	default:
     		}
     }

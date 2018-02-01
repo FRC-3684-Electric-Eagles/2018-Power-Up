@@ -26,13 +26,15 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static final int LEFT_JOYSTICK_USB_PORT_0 = 0;
 	public static final int RIGHT_JOYSTICK_USB_PORT_1 = 1;
+	//initializing joysticks
 	public static final int CLAWBUTTONopen = 2;
 	public static final int CLAWBUTTONclose =1;
 	public static final int ForkliftUp =2;
 	public static final int ForkliftDown =1;
+	public static final int Climb = 3;
 	public static final int Turn_Right = 5;
 	public static final int Turn_Left = 5;
-			
+	//initializing buttons
 	
 	public static int DRIVETRAIN_Talon_LEFT = 0;
 	public static int DRIVETRAIN_Talon_RIGHT = 1;
@@ -42,5 +44,6 @@ public class RobotMap {
 	public static int LiftMotorDown = 5;
 	public static int ClawMotor1 = 6;
 	public static int ClawMotor2 = 7;
+	//initializing Motor Controllers
 	}
 

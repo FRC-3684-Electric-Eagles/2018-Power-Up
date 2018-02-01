@@ -26,6 +26,7 @@ public class Turnleft extends Command {
    // Called repeatedly when this Command is scheduled to run
    protected void execute() {
    	Robot.driveTrain.setMotors(-.5, -.5);
+   	//turn left while the command is running
    }
 
    // Make this return true when this Command no longer needs to run execute()
