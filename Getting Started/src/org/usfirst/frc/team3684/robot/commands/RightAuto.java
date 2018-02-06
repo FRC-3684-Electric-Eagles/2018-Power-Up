@@ -2,6 +2,7 @@ package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.*;
 import org.usfirst.frc.team3684.robot.commands.LeftAuto.LeftAutoKind;
+import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -60,7 +61,10 @@ public class RightAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnRightScale:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-1, 1);
     		Robot.forkLift.setMotors(.25, .25);
     		//start the claw motors, move lift up, drive forward
@@ -81,10 +85,14 @@ public class RightAuto extends CommandGroup {
     		//stop moving forward
     		Timer.delay(1.25);
     		Robot.forkLift.setMotors(0, 0);
+    		Timer.delay(15);
     		//stop the lift moving down
     		break;
     	case placeOnRightSwitch:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-.25, .25);
     		Robot.forkLift.setMotors(.1, .1);
     		//start claw motors, move forward slowly, and move the lift up
@@ -93,18 +101,25 @@ public class RightAuto extends CommandGroup {
     		Robot.forkLift.setMotors(0, 0);
     		//turn left, stop moving the lift
     		Timer.delay(1);
+    		Robot.driveTrain.setMotors(-.25, .25);
+    		Timer.delay(1);
     		new ClawOutput();
     		//shoot a box
     		Timer.delay(1);
     		new ClawIntake();
+    		Timer.delay(15);
     		//restart the claw intake
     		break;
     	case driveForward:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-.25, .25);
     		//drive forward
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
+    		Timer.delay(15);
     		//stop
     	default:
     		}

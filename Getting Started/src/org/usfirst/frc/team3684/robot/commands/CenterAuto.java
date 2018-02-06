@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.*;
+import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -38,7 +39,10 @@ public class CenterAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftSwitch:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(.5, .5);
     		Robot.forkLift.setMotors(.25, .25);
     		//turn claw on, turn left, and start the claw
@@ -57,10 +61,14 @@ public class CenterAuto extends CommandGroup {
     		//shoot box
     		Timer.delay(1);
     		new ClawIntake();
+    		Timer.delay(15);
     		//turn claw back on
     		break;
     	case placeOnRightSwitch:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-.5, -.5);
     		Robot.forkLift.setMotors(.25, .25);
     		//start claw, turn right, move lift up
@@ -79,14 +87,19 @@ public class CenterAuto extends CommandGroup {
     		//shoot a box
     		Timer.delay(1);
     		new ClawIntake();
+    		Timer.delay(15);
     		//restart claw
     		//put code here for right switch
     		break;
     	case driveForward:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
+    		Timer.delay(15);
     		//something must be broken if this happens, but just in case it's still here. 
     	default:
     		}

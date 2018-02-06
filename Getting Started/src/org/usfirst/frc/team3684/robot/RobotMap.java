@@ -44,6 +44,7 @@ public class RobotMap {
 	public static int LiftMotorDown = 5;
 	public static int ClawMotor1 = 6;
 	public static int ClawMotor2 = 7;
+	public static int FlipMotor = 8;
 	//initializing Motor Controllers
 	}
 

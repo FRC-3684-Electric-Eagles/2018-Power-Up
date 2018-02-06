@@ -17,6 +17,7 @@ import org.usfirst.frc.team3684.robot.commands.LeftAuto;
 import org.usfirst.frc.team3684.robot.commands.RightAuto;
 import org.usfirst.frc.team3684.robot.subsystems.ClawRollers;
 import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 import org.usfirst.frc.team3684.robot.subsystems.Forklift;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain driveTrain;
 	public static Forklift forkLift;
 	public static ClawRollers clawRollers;
+	public static FlipUp flipUp;
 	//Instantiating subsystems
 
 	/**
@@ -67,6 +69,7 @@ public class Robot extends IterativeRobot {
 		driveTrain= new Drivetrain();
 		forkLift= new Forklift();
 		clawRollers = new ClawRollers();
+		flipUp = new FlipUp();
 		//initializing subsystems
 		m_oi = new OI();
 		//initializing OI
@@ -78,12 +81,9 @@ public class Robot extends IterativeRobot {
 		m_autoposition.addObject ("Right", new RightAuto());
 		SmartDashboard.putData("Auto Position", m_autoposition);
 		SmartDashboard.putData("Scale or switch preferred?", m_scaleorswitch);
-		SmartDashboard.putBoolean("ourswitchonright?", ourswitchright);
-		SmartDashboard.putBoolean("scaleonright?", scaleright);
-		SmartDashboard.putBoolean("theirswitchonright?", theirswitchright);
-		SmartDashboard.putData(clawRollers);
-		SmartDashboard.putData(driveTrain);
-		SmartDashboard.putData(forkLift);
+		SmartDashboard.putData("Claw Rollers", clawRollers);
+		SmartDashboard.putData("Drivetrain", driveTrain);
+		SmartDashboard.putData("Lift", forkLift);
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
 		//adding stuff to smartDashboard
@@ -122,6 +122,7 @@ public class Robot extends IterativeRobot {
 			theirswitchright = true;
 		}
 		switchselected = (boolean) m_scaleorswitch.getSelected();
+		
 		m_autonomousCommand = (Command) m_autoposition.getSelected();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -131,6 +132,9 @@ public class Robot extends IterativeRobot {
 			m_autonomousCommand.start();
 		}//adding booleans for use in autonomous as well as choosing which autonomous to use
 		
+		SmartDashboard.putBoolean("ourswitchonright?", ourswitchright);
+		SmartDashboard.putBoolean("scaleonright?", scaleright);
+		SmartDashboard.putBoolean("theirswitchonright?", theirswitchright);
 	}
 
 	/**
@@ -182,7 +186,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		
-		//i don't know what to put here.
+		Scheduler.getInstance().run();
+		//i don't know what to put here. I'm just throwing in the scheduler code, who knows?
 	}
 }

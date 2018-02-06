@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3684.robot.commands;
 import org.usfirst.frc.team3684.robot.*;
+import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,6 +17,7 @@ public class LeftAuto extends CommandGroup {
 		driveForward
 	}
 	//no idea what an enum is, I think this is a list of things to choose from, kinda like a boolean but with more than one option. 
+	
 	public LeftAutoKind autoKind;
 	//naming the LeftAutoKind as autoKind
     public LeftAuto() {
@@ -63,7 +65,10 @@ public class LeftAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftScale:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-1, 1);
     		Robot.forkLift.setMotors(.25, .25);
     		//start claw motors, move forward, move lift up
@@ -84,12 +89,18 @@ public class LeftAuto extends CommandGroup {
     		//stop driving forward
     		Timer.delay(1.25);
     		Robot.forkLift.setMotors(0, 0);
-    		//stop the lift motors
+    		Timer.delay(1);
+    		new ClawIntake();
+    		Timer.delay(15);
+    		//restart claw, stop robot from moving more
     		
     		//put code here for scale
     		break;
     	case placeOnLeftSwitch:
+    		new FlipUp();
     		new ClawIntake();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-.25, .25);
     		Robot.forkLift.setMotors(.1, .1);
     		//start the claw motors, go forward slowly, move the lift up
@@ -98,19 +109,27 @@ public class LeftAuto extends CommandGroup {
     		Robot.forkLift.setMotors(0, 0);
     		//turn right, stop the lift motors
     		Timer.delay(1);
+    		Robot.driveTrain.setMotors(-.25, .25);
+    		Timer.delay(1);
     		Robot.driveTrain.setMotors(0, 0);
     		new ClawOutput();
     		//stop turning, shoot a box
     		Timer.delay(1);
     		new ClawIntake();
-    		//restart the claw intake
+    		Timer.delay(15);
+    		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
     		new ClawIntake();
+    		new FlipUp();
+    		Timer.delay(3);
+    		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-.25, .25);
     		//drive forward slowly
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
+    		Timer.delay(15);
+    		
     		//stop
     	default :
     		
