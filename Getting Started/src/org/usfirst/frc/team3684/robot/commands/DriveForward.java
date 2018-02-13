@@ -27,6 +27,7 @@ public class DriveForward extends CommandGroup {
     	Robot.driveTrain.setMotors(1, 1);
     	Timer.delay(1);
     	Robot.driveTrain.setMotors(0, 0);
+    	Timer.delay(15);
     	//Test to see how far the robot goes after one second
     }
 

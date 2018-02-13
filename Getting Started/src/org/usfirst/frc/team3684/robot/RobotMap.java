@@ -36,10 +36,10 @@ public class RobotMap {
 	public static final int Turn_Left = 5;
 	//initializing buttons
 	
-	public static int DRIVETRAIN_Talon_LEFT = 0;
-	public static int DRIVETRAIN_Talon_RIGHT = 1;
-	public static int DRIVETRAIN_Talon_BACKLEFT = 2;
-	public static int DRIVETRAIN_Talon_BACKRIGHT = 3;
+	public static int DRIVETRAIN_Talon_LEFT = 2;
+	public static int DRIVETRAIN_Talon_RIGHT = 3;
+	public static int DRIVETRAIN_Talon_BACKLEFT = 0;
+	public static int DRIVETRAIN_Talon_BACKRIGHT = 1;
 	public static int LiftMotorUp = 4;
 	public static int LiftMotorDown = 5;
 	public static int ClawMotor1 = 6;

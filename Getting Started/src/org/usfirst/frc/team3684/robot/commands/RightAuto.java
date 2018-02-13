@@ -65,7 +65,7 @@ public class RightAuto extends CommandGroup {
     		new ClawIntake();
     		Timer.delay(3);
     		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(-1, 1);
+    		Robot.driveTrain.setMotors(1, 1);
     		Robot.forkLift.setMotors(.25, .25);
     		//start the claw motors, move lift up, drive forward
     		Timer.delay(2);
@@ -77,7 +77,7 @@ public class RightAuto extends CommandGroup {
     		//stop moving forward, shoot out a box
     		Timer.delay(1);
     		new ClawIntake();
-    		Robot.forkLift.setMotors(-.25, -.25);
+    		Robot.forkLift.setMotors(.25, -.25);
     		Robot.driveTrain.setMotors(.5, .5);
     		//intake a cube, move the lift down, and turn left about 120 degrees
     		Timer.delay(.75);
@@ -93,15 +93,15 @@ public class RightAuto extends CommandGroup {
     		new ClawIntake();
     		Timer.delay(3);
     		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(-.25, .25);
+    		Robot.driveTrain.setMotors(.25, .25);
     		Robot.forkLift.setMotors(.1, .1);
     		//start claw motors, move forward slowly, and move the lift up
     		Timer.delay(2);
-    		Robot.driveTrain.setMotors(.5, .5);
+    		Robot.driveTrain.setMotors(-.5, .5);
     		Robot.forkLift.setMotors(0, 0);
     		//turn left, stop moving the lift
     		Timer.delay(1);
-    		Robot.driveTrain.setMotors(-.25, .25);
+    		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(1);
     		new ClawOutput();
     		//shoot a box
@@ -115,7 +115,7 @@ public class RightAuto extends CommandGroup {
     		new ClawIntake();
     		Timer.delay(3);
     		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(-.25, .25);
+    		Robot.driveTrain.setMotors(.25, .25);
     		//drive forward
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);

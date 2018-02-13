@@ -15,9 +15,9 @@ public class Drivetrain extends Subsystem {
 	
 	public Drivetrain() {
 	
-		leftMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_LEFT);
+		leftMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_BACKLEFT);
 		rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
-		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKLEFT);
+		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_LEFT);
 		backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
 		
 	}
@@ -63,7 +63,7 @@ public class Drivetrain extends Subsystem {
     }
     
     private double scaleLeft(double left) {
-    	return 1.0 * left;
+    	return -1.0 * left;
     }
     
     private double scaleRight(double right) {

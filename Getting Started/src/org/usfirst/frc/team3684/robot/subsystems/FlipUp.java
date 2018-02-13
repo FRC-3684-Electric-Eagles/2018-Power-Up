@@ -17,7 +17,7 @@ public class FlipUp extends Subsystem {
 	public FlipUp() {
 		flipmotor = new Spark(RobotMap.FlipMotor);
 		}
-		
+		//the spark may be temporary, we might decide to use a servo, which I don't think requires a motor controller. Never know though.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -52,4 +52,4 @@ public class FlipUp extends Subsystem {
     	return 1.0 * flip;
     }
 }
-
+//i've basically been using the same code for all the subsystems. Hopefully that works out fine. Hopefully.
