@@ -39,10 +39,16 @@ public class CenterAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftSwitch:
+    		Robot.driveTrain.setMotors(.25, .25);
+    		Timer.delay(.5);
     		new FlipUp();
     		new ClawIntake();
-    		Timer.delay(3);
-    		Robot.flipUp.stop();
+    		Timer.delay(.5);
+    		Robot.forkLift.setMotors(.75, .75);
+    		Timer.delay(2);
+    		Robot.forkLift.setMotors(0, 0);
+    		new LiftFlipAway();
+    		Timer.delay(.5);
     		Robot.driveTrain.setMotors(-.5, .5);
     		Robot.forkLift.setMotors(.25, .25);
     		//turn claw on, turn left, and start the claw
@@ -65,10 +71,16 @@ public class CenterAuto extends CommandGroup {
     		//turn claw back on
     		break;
     	case placeOnRightSwitch:
+    		Robot.driveTrain.setMotors(.25, .25);
+    		Timer.delay(.5);
     		new FlipUp();
     		new ClawIntake();
-    		Timer.delay(3);
-    		Robot.flipUp.stop();
+    		Timer.delay(.5);
+    		Robot.forkLift.setMotors(.75, .75);
+    		Timer.delay(2);
+    		Robot.forkLift.setMotors(0, 0);
+    		new LiftFlipAway();
+    		Timer.delay(.5);
     		Robot.driveTrain.setMotors(.5, -.5);
     		Robot.forkLift.setMotors(.25, .25);
     		//start claw, turn right, move lift up
@@ -92,9 +104,16 @@ public class CenterAuto extends CommandGroup {
     		//put code here for right switch
     		break;
     	case driveForward:
+    		Robot.driveTrain.setMotors(.25, .25);
+    		Timer.delay(.5);
     		new FlipUp();
     		new ClawIntake();
-    		Timer.delay(3);
+    		Timer.delay(.5);
+    		Robot.forkLift.setMotors(.75, .75);
+    		Timer.delay(2);
+    		Robot.forkLift.setMotors(0, 0);
+    		new LiftFlipAway();
+    		Timer.delay(.5);
     		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(-.25, .25);
     		Timer.delay(4);

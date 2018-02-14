@@ -21,12 +21,17 @@ public class MoveLiftUP extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Robot.limitswitchtop) {
     	Robot.forkLift.setMotors(.50,.50);
+    	}
     	//moves the claw up
+  //  }
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if (Robot.limitswitchtop) {
+    		return true;
+    	} else 
         return false;
     }
 

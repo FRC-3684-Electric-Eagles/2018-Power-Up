@@ -10,6 +10,8 @@ package org.usfirst.frc.team3684.robot;
 import org.usfirst.frc.team3684.robot.commands.ClawIntake;
 import org.usfirst.frc.team3684.robot.commands.ClawOutput;
 import org.usfirst.frc.team3684.robot.commands.ClimbWithLift;
+import org.usfirst.frc.team3684.robot.commands.LiftFlip;
+import org.usfirst.frc.team3684.robot.commands.LiftFlipAway;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftDOWN;
 import org.usfirst.frc.team3684.robot.commands.MoveLiftUP;
 import org.usfirst.frc.team3684.robot.commands.Turnleft;
@@ -37,17 +39,23 @@ public class OI {
 	Button left_trigger= new JoystickButton(m_leftstick, RobotMap.CLAWBUTTONclose);
 	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
 	Button leftbutton1= new JoystickButton (m_leftstick, RobotMap.CLAWBUTTONopen);
+	Button leftbutton4= new JoystickButton (m_leftstick, RobotMap.Flip_Forward);
+	Button leftbutton6= new JoystickButton (m_leftstick, RobotMap.Flip_Backward);
 	Button rightbutton3 = new JoystickButton (m_rightstick, RobotMap.Climb);
 	Button rightbutton0 = new JoystickButton (m_rightstick, RobotMap.ForkliftUp);
 	Button right_trigger= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
 	Button rightbutton5= new JoystickButton (m_rightstick, RobotMap.Turn_Right);
 	//binding buttons to commands
 	left_trigger.whileHeld(new ClawOutput());
-	leftbutton5.whileHeld(new Turnleft());
+	leftbutton1.whileHeld(new ClawIntake());
+	//leftbutton5.whileHeld(new Turnleft());
+	leftbutton4.whileHeld(new LiftFlip());
+	leftbutton6.whileHeld(new LiftFlipAway());
 	rightbutton0.whileHeld(new MoveLiftUP());
 	right_trigger.whileHeld(new MoveLiftDOWN());
-	rightbutton5.whileHeld(new Turnright());
-	rightbutton3.whileHeld(new ClimbWithLift());
+	//rightbutton5.whileHeld(new Turnright());
+	//rightbutton3.whileHeld(new ClimbWithLift());
+	
 	//these are all held, so commands will run until you let go. 
 	
 	}

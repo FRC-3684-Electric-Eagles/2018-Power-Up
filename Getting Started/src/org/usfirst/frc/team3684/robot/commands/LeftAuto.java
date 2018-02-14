@@ -65,9 +65,16 @@ public class LeftAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftScale:
+    		Robot.driveTrain.setMotors(.25, .25);
+    		Timer.delay(.5);
     		new FlipUp();
     		new ClawIntake();
-    		Timer.delay(3);
+    		Timer.delay(.5);
+    		Robot.forkLift.setMotors(.75, .75);
+    		Timer.delay(2);
+    		Robot.forkLift.setMotors(0, 0);
+    		new LiftFlipAway();
+    		Timer.delay(.5);
     		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(1, 1);
     		Robot.forkLift.setMotors(.25, .25);
@@ -97,9 +104,16 @@ public class LeftAuto extends CommandGroup {
     		//put code here for scale
     		break;
     	case placeOnLeftSwitch:
+    		Robot.driveTrain.setMotors(.25, .25);
+    		Timer.delay(.5);
     		new FlipUp();
     		new ClawIntake();
-    		Timer.delay(3);
+    		Timer.delay(.5);
+    		Robot.forkLift.setMotors(.75, .75);
+    		Timer.delay(2);
+    		Robot.forkLift.setMotors(0, 0);
+    		new LiftFlipAway();
+    		Timer.delay(.5);
     		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(.25, .25);
     		Robot.forkLift.setMotors(.1, .1);
@@ -120,9 +134,16 @@ public class LeftAuto extends CommandGroup {
     		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
-    		new ClawIntake();
+    		Robot.driveTrain.setMotors(.25, .25);
+    		Timer.delay(.5);
     		new FlipUp();
-    		Timer.delay(3);
+    		new ClawIntake();
+    		Timer.delay(.5);
+    		Robot.forkLift.setMotors(.75, .75);
+    		Timer.delay(2);
+    		Robot.forkLift.setMotors(0, 0);
+    		new LiftFlipAway();
+    		Timer.delay(.5);
     		Robot.flipUp.stop();
     		Robot.driveTrain.setMotors(.25, .25);
     		//drive forward slowly

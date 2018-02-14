@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3684.robot.commands;
+
 import org.usfirst.frc.team3684.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -7,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftFlip extends Command {
+public class LiftFlipAway extends Command {
 
-    public LiftFlip() {
+    public LiftFlipAway() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.flipUp);
@@ -21,7 +22,7 @@ public class LiftFlip extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.flipUp.setMotors(.05);
+    	Robot.flipUp.setMotors(-.05);
     	Timer.delay(.25);
     	Robot.flipUp.setMotors(0);
     	Robot.flipUp.stop();

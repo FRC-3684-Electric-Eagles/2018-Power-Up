@@ -21,12 +21,16 @@ public class MoveLiftDOWN extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Robot.limitswitchbottom) {
     	Robot.forkLift.setMotors(-.50,-.50);
     	//moves the claw down
+    	}
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if (Robot.limitswitchbottom) {
+    		return true;
+    	} else 
         return false;
     }
 

@@ -20,7 +20,7 @@ public class ClawIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.clawRollers.setMotors(-1,-1);
+    	Robot.clawRollers.setMotors(.25,-.25);
     	//motors spin, going in
     }
 
@@ -37,6 +37,7 @@ public class ClawIntake extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.clawRollers.stop();
     	
     	}
 }

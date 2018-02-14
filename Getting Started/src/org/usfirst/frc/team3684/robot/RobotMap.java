@@ -34,6 +34,8 @@ public class RobotMap {
 	public static final int Climb = 3;
 	public static final int Turn_Right = 5;
 	public static final int Turn_Left = 5;
+	public static final int Flip_Forward = 4;
+	public static final int Flip_Backward = 6;
 	//initializing buttons
 	
 	public static int DRIVETRAIN_Talon_LEFT = 2;
@@ -44,7 +46,7 @@ public class RobotMap {
 	public static int LiftMotorDown = 5;
 	public static int ClawMotor1 = 6;
 	public static int ClawMotor2 = 7;
-	public static int FlipMotor = 8;
+	public static int FlipMotor = 0;
 	//initializing Motor Controllers
 	}
 

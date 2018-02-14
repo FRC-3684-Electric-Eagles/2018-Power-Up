@@ -21,6 +21,7 @@ import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 import org.usfirst.frc.team3684.robot.subsystems.Forklift;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -48,6 +49,9 @@ public class Robot extends IterativeRobot {
 	public static boolean ourswitchright;
 	public static boolean theirswitchright;
 	public static boolean switchselected;
+	public static boolean limitswitchtop;
+	public static boolean limitswitchbottom;
+	
 	//adding booleans for autonomous to use switch or scale.
 
 	private Timer m_timer = new Timer();
@@ -58,6 +62,8 @@ public class Robot extends IterativeRobot {
 	public static Forklift forkLift;
 	public static ClawRollers clawRollers;
 	public static FlipUp flipUp;
+	public static DigitalInput limitSwitch1;
+	public static DigitalInput limitSwitch0;
 	//Instantiating subsystems
 
 	/**
@@ -66,6 +72,16 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		limitSwitch0 = new DigitalInput(0);
+		if (limitSwitch0.equals(1)) {
+			limitswitchbottom = true;
+		} else limitswitchbottom = false;
+		limitSwitch1 = new DigitalInput(1);
+		if (limitSwitch1.equals(1)) {
+			limitswitchtop = true;
+		} else limitswitchtop = false;
+		
+		//limitSwitch
 		driveTrain= new Drivetrain();
 		forkLift= new Forklift();
 		clawRollers = new ClawRollers();
@@ -73,6 +89,7 @@ public class Robot extends IterativeRobot {
 		//initializing subsystems
 		m_oi = new OI();
 		//initializing OI
+		
 		m_scaleorswitch.addDefault("Switch", true);
 		m_scaleorswitch.addObject("Scale", false);
 		m_autoposition.addDefault("Driveforward", new DriveForward());
