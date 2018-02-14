@@ -91,7 +91,7 @@ public class RightAuto extends CommandGroup {
     		//stop moving forward
     		Timer.delay(1.25);
     		Robot.forkLift.setMotors(0, 0);
-    		Timer.delay(15);
+    		this.end();
     		//stop the lift moving down
     		break;
     	case placeOnRightSwitch:
@@ -119,7 +119,7 @@ public class RightAuto extends CommandGroup {
     		//shoot a box
     		Timer.delay(1);
     		new ClawIntake();
-    		Timer.delay(15);
+    		this.end();
     		//restart the claw intake
     		break;
     	case driveForward:
@@ -137,7 +137,7 @@ public class RightAuto extends CommandGroup {
     		//drive forward
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		Timer.delay(15);
+    		this.end();
     		//stop
     	default:
     		}

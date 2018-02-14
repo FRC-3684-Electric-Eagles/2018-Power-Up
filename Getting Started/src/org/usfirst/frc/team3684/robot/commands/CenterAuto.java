@@ -67,7 +67,7 @@ public class CenterAuto extends CommandGroup {
     		//shoot box
     		Timer.delay(1);
     		new ClawIntake();
-    		Timer.delay(15);
+    		this.end();
     		//turn claw back on
     		break;
     	case placeOnRightSwitch:
@@ -99,7 +99,8 @@ public class CenterAuto extends CommandGroup {
     		//shoot a box
     		Timer.delay(1);
     		new ClawIntake();
-    		Timer.delay(15);
+    		this.end();
+    		
     		//restart claw
     		//put code here for right switch
     		break;
@@ -118,7 +119,7 @@ public class CenterAuto extends CommandGroup {
     		Robot.driveTrain.setMotors(-.25, .25);
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		Timer.delay(15);
+    		this.end();
     		//something must be broken if this happens, but just in case it's still here. It will start the claw and flip up the thingy as well as cross the auto line. If for some reason you want to force a driveforward, use the driveforward command.
     	default:
     		}

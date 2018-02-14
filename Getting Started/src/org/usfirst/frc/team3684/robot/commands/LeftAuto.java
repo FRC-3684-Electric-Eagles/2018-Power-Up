@@ -98,7 +98,7 @@ public class LeftAuto extends CommandGroup {
     		Robot.forkLift.setMotors(0, 0);
     		Timer.delay(1);
     		new ClawIntake();
-    		Timer.delay(15);
+    		this.end();
     		//restart claw, stop robot from moving more
     		
     		//put code here for scale
@@ -130,7 +130,7 @@ public class LeftAuto extends CommandGroup {
     		//stop turning, shoot a box
     		Timer.delay(1);
     		new ClawIntake();
-    		Timer.delay(15);
+    		this.end();
     		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
@@ -149,8 +149,7 @@ public class LeftAuto extends CommandGroup {
     		//drive forward slowly
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		Timer.delay(15);
-    		
+    		this.end();
     		//stop
     	default :
     		

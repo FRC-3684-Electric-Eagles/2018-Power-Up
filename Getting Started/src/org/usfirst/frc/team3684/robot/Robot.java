@@ -72,12 +72,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
 		limitSwitch0 = new DigitalInput(0);
-		if (limitSwitch0.equals(1)) {
+		if (limitSwitch0.get()) {
 			limitswitchbottom = true;
 		} else limitswitchbottom = false;
 		limitSwitch1 = new DigitalInput(1);
-		if (limitSwitch1.equals(1)) {
+		if (limitSwitch1.get()) {
 			limitswitchtop = true;
 		} else limitswitchtop = false;
 		
