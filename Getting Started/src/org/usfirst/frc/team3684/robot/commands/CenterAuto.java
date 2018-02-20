@@ -41,6 +41,7 @@ public class CenterAuto extends CommandGroup {
     	case placeOnLeftSwitch:
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(0, 0);
     		new FlipUp();
     		new ClawIntake();
     		Timer.delay(.5);
@@ -51,6 +52,7 @@ public class CenterAuto extends CommandGroup {
     		Timer.delay(.5);
     		Robot.driveTrain.setMotors(-.5, .5);
     		Robot.forkLift.setMotors(.25, .25);
+    		Robot.clawRollers.stop();
     		//turn claw on, turn left, and start the claw
     		Timer.delay(1);
     		Robot.driveTrain.setMotors(.5, .5);
@@ -73,6 +75,7 @@ public class CenterAuto extends CommandGroup {
     	case placeOnRightSwitch:
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(0, 0);
     		new FlipUp();
     		new ClawIntake();
     		Timer.delay(.5);
@@ -81,6 +84,7 @@ public class CenterAuto extends CommandGroup {
     		Robot.forkLift.setMotors(0, 0);
     		new LiftFlipAway();
     		Timer.delay(.5);
+    		Robot.clawRollers.stop();
     		Robot.driveTrain.setMotors(.5, -.5);
     		Robot.forkLift.setMotors(.25, .25);
     		//start claw, turn right, move lift up
@@ -107,6 +111,7 @@ public class CenterAuto extends CommandGroup {
     	case driveForward:
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(0, 0);
     		new FlipUp();
     		new ClawIntake();
     		Timer.delay(.5);

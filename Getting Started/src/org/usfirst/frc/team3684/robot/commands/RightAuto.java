@@ -63,6 +63,7 @@ public class RightAuto extends CommandGroup {
     	case placeOnRightScale:
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(0, 0);
     		new FlipUp();
     		new ClawIntake();
     		Timer.delay(.5);
@@ -73,6 +74,7 @@ public class RightAuto extends CommandGroup {
     		Timer.delay(.5);
     		Robot.driveTrain.setMotors(1, 1);
     		Robot.forkLift.setMotors(.25, .25);
+    		Robot.clawRollers.stop();
     		//start the claw motors, move lift up, drive forward
     		Timer.delay(2);
     		Robot.forkLift.setMotors(0, 0);
@@ -87,6 +89,7 @@ public class RightAuto extends CommandGroup {
     		Robot.driveTrain.setMotors(.5, .5);
     		//intake a cube, move the lift down, and turn left about 120 degrees
     		Timer.delay(.75);
+    		Robot.clawRollers.stop();
     		Robot.driveTrain.setMotors(0, 0);
     		//stop moving forward
     		Timer.delay(1.25);
@@ -97,6 +100,7 @@ public class RightAuto extends CommandGroup {
     	case placeOnRightSwitch:
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(0, 0);
     		new FlipUp();
     		new ClawIntake();
     		Timer.delay(.5);
@@ -107,6 +111,7 @@ public class RightAuto extends CommandGroup {
     		Timer.delay(.5);
     		Robot.driveTrain.setMotors(.25, .25);
     		Robot.forkLift.setMotors(.1, .1);
+    		Robot.clawRollers.stop();
     		//start claw motors, move forward slowly, and move the lift up
     		Timer.delay(2);
     		Robot.driveTrain.setMotors(-.5, .5);
@@ -118,15 +123,15 @@ public class RightAuto extends CommandGroup {
     		new ClawOutput();
     		//shoot a box
     		Timer.delay(1);
-    		new ClawIntake();
+    		Robot.clawRollers.stop();
     		this.end();
     		//restart the claw intake
     		break;
     	case driveForward:
     		Robot.driveTrain.setMotors(.25, .25);
     		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(0, 0);
     		new FlipUp();
-    		new ClawIntake();
     		Timer.delay(.5);
     		Robot.forkLift.setMotors(.75, .75);
     		Timer.delay(2);

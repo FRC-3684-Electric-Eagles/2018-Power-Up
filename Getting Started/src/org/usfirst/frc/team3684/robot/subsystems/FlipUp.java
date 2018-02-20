@@ -5,6 +5,7 @@ import org.usfirst.frc.team3684.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.CANTalon;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -12,11 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FlipUp extends Subsystem {
 	
-	public Spark flipMotor;
+	public static VictorSP flipMotor;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public FlipUp() {
-		flipMotor = new Spark(RobotMap.FlipMotor);
+		flipMotor = new VictorSP(RobotMap.FlipMotor);
 		}
 		//the spark may be temporary, we might decide to use a servo, which I don't think requires a motor controller. Never know though. Nope we're using a spark.
 
@@ -25,10 +26,10 @@ public class FlipUp extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void setMotors(double flip) {
-    	flipMotor.set(flip);
+  //  public void setMotors(double input) {
+    //	flipMotor.set(input);
     	
-    }
+  //  }
     
     public void stop() {
     	flipMotor.set(0);

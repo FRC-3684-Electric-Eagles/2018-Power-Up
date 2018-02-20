@@ -25,14 +25,15 @@ public class DriveTrain_TankDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	// Scaling joysticks to limit max speed
-    	double leftPower = Robot.m_oi.m_leftstick.getY()* speedScale;
-        double rightPower = Robot.m_oi.m_rightstick.getY()* speedScale;
+    	double leftPower = Robot.m_oi.m_rightstick.getY()* speedScale;
+        double rightPower = Robot.m_oi.m_leftstick.getY()* speedScale;
         
         // Adding a range of the joysticks in which the robot will not respond
-        leftPower = (Math.abs(leftPower) < deadzone)? 0 : leftPower;
-        rightPower = (Math.abs(rightPower) < deadzone)? 0 : rightPower;
+        leftPower = (Math.abs(leftPower) < deadzone)? 0 : (-1)*leftPower;
+        rightPower = (Math.abs(rightPower) < deadzone)? 0 : (-1)*rightPower;
         
-      //  Robot.driveTrain.setMotors(leftPower, rightPower);
+        Robot.driveTrain.setMotors(leftPower, rightPower);
+        //above should be commented out to stop it from moving, but I don't know if it actually works so be VERY careful unless you want to smash into someone
     }
 
     // Make this return true when this Command no longer needs to run execute()

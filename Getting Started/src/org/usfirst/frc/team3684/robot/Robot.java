@@ -49,9 +49,8 @@ public class Robot extends IterativeRobot {
 	public static boolean ourswitchright;
 	public static boolean theirswitchright;
 	public static boolean switchselected;
-	public static boolean limitswitchtop;
-	public static boolean limitswitchbottom;
-	
+	public static DigitalInput limitswitchtop;
+	public static DigitalInput limitswitchbottom;
 	//adding booleans for autonomous to use switch or scale.
 
 	private Timer m_timer = new Timer();
@@ -62,8 +61,6 @@ public class Robot extends IterativeRobot {
 	public static Forklift forkLift;
 	public static ClawRollers clawRollers;
 	public static FlipUp flipUp;
-	public static DigitalInput limitSwitch1;
-	public static DigitalInput limitSwitch0;
 	//Instantiating subsystems
 
 	/**
@@ -73,16 +70,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		
-		limitSwitch0 = new DigitalInput(0);
-		if (limitSwitch0.get()) {
-			limitswitchbottom = true;
-		} else limitswitchbottom = false;
-		limitSwitch1 = new DigitalInput(1);
-		if (limitSwitch1.get()) {
-			limitswitchtop = true;
-		} else limitswitchtop = false;
 		
-		//limitSwitch
+		limitswitchtop = new DigitalInput(1);
+		limitswitchbottom = new DigitalInput(0);
 		driveTrain= new Drivetrain();
 		forkLift= new Forklift();
 		clawRollers = new ClawRollers();
@@ -160,6 +150,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -181,8 +172,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-
 		Scheduler.getInstance().run();
+		
+		
 		//again i honestly don't know what this does, I think that it is used for command scheduling?
 
 	}
@@ -204,7 +196,5 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		Scheduler.getInstance().run();
-		//i don't know what to put here. I'm just throwing in the scheduler code, who knows?
 	}
 }

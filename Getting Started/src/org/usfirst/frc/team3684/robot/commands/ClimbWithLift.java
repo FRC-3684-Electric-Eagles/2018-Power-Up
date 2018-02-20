@@ -2,6 +2,7 @@ package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -21,8 +22,10 @@ public class ClimbWithLift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Timer.getMatchTime() < 30) {
     	Robot.forkLift.setMotors(-1, -1);
-    	//exactly like MoveLiftDOWN but more powerful
+    	}
+    	//exactly like MoveLiftDOWN but more powerful, and won't start until endgame maaaybe. Might just change this to be the FAST lift option and add another version of MoveLiftUP that's fast.
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3684.robot.commands;
 import org.usfirst.frc.team3684.robot.Robot;
+import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,9 +22,9 @@ public class LiftFlip extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.flipUp.setMotors(.05);
+    	FlipUp.flipMotor.set(.1);
     	Timer.delay(.25);
-    	Robot.flipUp.setMotors(0);
+    	FlipUp.flipMotor.set(0);
     	Robot.flipUp.stop();
     }
 
@@ -34,7 +35,7 @@ public class LiftFlip extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.flipUp.setMotors(0);
+    //	Robot.flipUp.setMotors(0);
     }
 
     // Called when another command which requires one or more of the same
