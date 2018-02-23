@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3684.robot.subsystems;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.CANTalon;
 import org.usfirst.frc.team3684.robot.RobotMap;
@@ -8,10 +9,10 @@ import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
  */
 public class Drivetrain extends Subsystem {
 	
-	public CANTalon leftMotor;
-	public CANTalon rightMotor;
-	public CANTalon backleftMotor;
-	public CANTalon backrightMotor;
+	public static CANTalon leftMotor;
+	public static CANTalon rightMotor;
+	public static CANTalon backleftMotor;
+	public static CANTalon backrightMotor;
 	
 	public Drivetrain() {
 	
@@ -19,6 +20,7 @@ public class Drivetrain extends Subsystem {
 		rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
 		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_LEFT);
 		backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
+
 		
 	}
 	

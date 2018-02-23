@@ -39,27 +39,26 @@ public class CenterAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftSwitch:
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(0, 0);
-    		new FlipUp();
-    		new ClawIntake();
-    		Timer.delay(.5);
-    		Robot.forkLift.setMotors(.75, .75);
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
-    		new LiftFlipAway();
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(-.5, .5);
+    		Robot.driveTrain.setMotors(.5,.5);
+        	FlipUp.flipMotor.set(.1);
+        	Timer.delay(1);
+        	Robot.driveTrain.setMotors(0, 0);
+        	Robot.forkLift.setMotors(.5,.5);
+        	Timer.delay(1);
+        	Robot.forkLift.setMotors(0, 0);
+        	FlipUp.flipMotor.set(-.10);
+        	Timer.delay(1);
+        	FlipUp.flipMotor.set(0);
+    		Robot.driveTrain.setMotors(.5, -.5);
     		Robot.forkLift.setMotors(.25, .25);
-    		Robot.clawRollers.stop();
     		//turn claw on, turn left, and start the claw
-    		Timer.delay(1);
+    		Timer.delay(1.525);
     		Robot.driveTrain.setMotors(.5, .5);
     		//move forward while turned to the left
-    		Timer.delay(1);
+    		Timer.delay(.475);
     		Robot.forkLift.setMotors(0,0);
-    		Robot.driveTrain.setMotors(.5, -.5);
+    		Timer.delay(1.525);
+    		Robot.driveTrain.setMotors(-.5, .5);
     		//stop the forklift and turn to the right
     		Timer.delay(1);
     		Robot.driveTrain.setMotors(.5, .5);
@@ -67,54 +66,54 @@ public class CenterAuto extends CommandGroup {
     		Timer.delay(2);
     		new ClawOutput();
     		//shoot box
-    		Timer.delay(1);
-    		new ClawIntake();
-    		this.end();
+    		Timer.delay(30);
+    		
     		//turn claw back on
     		break;
     	case placeOnRightSwitch:
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(0, 0);
-    		new FlipUp();
-    		new ClawIntake();
-    		Timer.delay(.5);
-    		Robot.forkLift.setMotors(.75, .75);
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
-    		new LiftFlipAway();
-    		Timer.delay(.5);
-    		Robot.clawRollers.stop();
+    		Robot.driveTrain.setMotors(.5,.5);
+        	FlipUp.flipMotor.set(.1);
+        	Timer.delay(1);
+        	Robot.driveTrain.setMotors(0, 0);
+        	Robot.forkLift.setMotors(.5,.5);
+        	Timer.delay(1);
+        	Robot.forkLift.setMotors(0, 0);
+        	FlipUp.flipMotor.set(-.10);
+        	Timer.delay(1);
+        	FlipUp.flipMotor.set(0);
     		Robot.driveTrain.setMotors(.5, -.5);
     		Robot.forkLift.setMotors(.25, .25);
-    		//start claw, turn right, move lift up
     		Timer.delay(1);
+    		//turn claw on, turn right, and start the claw
     		Robot.driveTrain.setMotors(.5, .5);
-    		//go forward
-    		Timer.delay(1);
+    		Timer.delay(2);
+    		//move forward while turned to the right
     		Robot.forkLift.setMotors(0,0);
     		Robot.driveTrain.setMotors(-.5, .5);
-    		//stop forklift, turn left
+    		//stop the forklift and turn to the left
     		Timer.delay(1);
     		Robot.driveTrain.setMotors(.5, .5);
     		//drive forward
     		Timer.delay(2);
     		new ClawOutput();
-    		//shoot a box
-    		Timer.delay(1);
-    		new ClawIntake();
-    		this.end();
+    		//shoot box
+    		Timer.delay(30);
+    		
     		
     		//restart claw
     		//put code here for right switch
     		break;
     	case driveForward:
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(0, 0);
-    		new FlipUp();
-    		new ClawIntake();
-    		Timer.delay(.5);
+    		Robot.driveTrain.setMotors(.5,.5);
+        	FlipUp.flipMotor.set(.1);
+        	Timer.delay(1);
+        	Robot.driveTrain.setMotors(0, 0);
+        	Robot.forkLift.setMotors(.5,.5);
+        	Timer.delay(1);
+        	Robot.forkLift.setMotors(0, 0);
+        	FlipUp.flipMotor.set(-.10);
+        	Timer.delay(1);
+        	FlipUp.flipMotor.set(0);
     		Robot.forkLift.setMotors(.75, .75);
     		Timer.delay(2);
     		Robot.forkLift.setMotors(0, 0);

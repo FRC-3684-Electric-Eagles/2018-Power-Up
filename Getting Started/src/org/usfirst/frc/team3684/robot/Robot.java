@@ -20,13 +20,21 @@ import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 import org.usfirst.frc.team3684.robot.subsystems.Forklift;
 
+import com.ctre.phoenix.motorcontrol.can.CANTalon;
+
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -62,13 +70,25 @@ public class Robot extends IterativeRobot {
 	public static ClawRollers clawRollers;
 	public static FlipUp flipUp;
 	//Instantiating subsystems
-
+	
+	
+	//initializing drivetrain for use with gyros
+	public static DifferentialDrive myDrive;
+	public SpeedControllerGroup m_right = new SpeedControllerGroup(Drivetrain.backrightMotor, Drivetrain.rightMotor);
+	public SpeedControllerGroup m_left = new SpeedControllerGroup(Drivetrain.backleftMotor, Drivetrain.leftMotor);
+	public static Gyro gyro;
+	public static final double Kp = 0.03;
+	public static final double kAngleSetpoint = 0;
+	//more experimental driving code
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		myDrive = new DifferentialDrive(m_left, m_right);
+		gyro = new AnalogGyro(0);
+		//adding gyro code
 		
 		
 		limitswitchtop = new DigitalInput(1);
@@ -80,7 +100,7 @@ public class Robot extends IterativeRobot {
 		//initializing subsystems
 		m_oi = new OI();
 		//initializing OI
-		
+		PowerDistributionPanel pdp = new PowerDistributionPanel();
 		m_scaleorswitch.addDefault("Switch", true);
 		m_scaleorswitch.addObject("Scale", false);
 		m_autoposition.addDefault("Driveforward", new DriveForward());

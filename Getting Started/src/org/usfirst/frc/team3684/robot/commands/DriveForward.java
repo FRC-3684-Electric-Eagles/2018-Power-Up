@@ -21,17 +21,18 @@ public class DriveForward extends CommandGroup {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveTrain.setMotors(0, 0);
+    	double angle = Robot.gyro.getAngle();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.setMotors(-.5,.5);
-    	Timer.delay(.2);
-    	Robot.driveTrain.setMotors(0, 0);
-    	Timer.delay(30);
-    	//Test to see how far the robot goes after one second
+    	double angle = Robot.gyro.getAngle();
+		Robot.myDrive.arcadeDrive(1.0, -angle * Robot.Kp);
+		Timer.delay(0.01);
+    	//gyro test? please help me
     }
-
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

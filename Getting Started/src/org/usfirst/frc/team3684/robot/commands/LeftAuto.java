@@ -65,94 +65,82 @@ public class LeftAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftScale:
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(.5);
-    		new FlipUp();
-    		new ClawIntake();
-    		Timer.delay(.5);
-    		Robot.forkLift.setMotors(.75, .75);
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
-    		new LiftFlipAway();
-    		Timer.delay(.5);
-    		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(1, 1);
-    		Robot.forkLift.setMotors(.25, .25);
-    		Robot.clawRollers.stop();
-    		//start claw motors, move forward, move lift up
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
+    		Robot.driveTrain.setMotors(.5,.5);
+        	FlipUp.flipMotor.set(.1);
+        	Timer.delay(1);
+        	Robot.driveTrain.setMotors(0, 0);
+        	Robot.forkLift.setMotors(.5,.5);
+        	Timer.delay(1);
+        	Robot.forkLift.setMotors(0, 0);
+        	FlipUp.flipMotor.set(-.10);
+        	Timer.delay(1);
+        	FlipUp.flipMotor.set(0);
+    		Robot.driveTrain.setMotors(.5, .5);
+    		//start claw motors, move forward 25 feet, move lift up
+    		Timer.delay(6);
+    		Robot.forkLift.setMotors(.5, .5);
     		//stop lift
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(0, 0);
+    		Timer.delay(1);
+    		Robot.driveTrain.setMotors(-.5, .5);
+    		Timer.delay(1);
+    		Robot.forkLift.setMotors(0, 0);
     		new ClawOutput();
     		//stop moving and shoot a box
     		Timer.delay(1);
-    		new ClawIntake();
-    		Robot.forkLift.setMotors(-.25, -.25);
-    		Robot.driveTrain.setMotors(.5, -.5);
-    		//turn right 120 deg, move lift down, restart claw intake
-    		Timer.delay(.75);
-    		Robot.driveTrain.setMotors(0, 0);
-    		//stop driving forward
-    		Timer.delay(1.25);
-    		Robot.forkLift.setMotors(0, 0);
-    		Timer.delay(1);
     		Robot.clawRollers.stop();
-    		this.end();
+    		Timer.delay(30);
     		//restart claw, stop robot from moving more
     		
     		//put code here for scale
     		break;
     	case placeOnLeftSwitch:
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(0, 0);
-    		new FlipUp();
-    		new ClawIntake();
-    		Timer.delay(.5);
-    		Robot.forkLift.setMotors(.75, .75);
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
-    		new LiftFlipAway();
-    		Timer.delay(.5);
-    		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(.25, .25);
+    		Robot.driveTrain.setMotors(.5,.5);
+        	FlipUp.flipMotor.set(.1);
+        	Timer.delay(1);
+        	Robot.driveTrain.setMotors(0, 0);
+        	Robot.forkLift.setMotors(.5,.5);
+        	Timer.delay(1);
+        	Robot.forkLift.setMotors(0, 0);
+        	FlipUp.flipMotor.set(-.10);
+        	Timer.delay(1);
+        	FlipUp.flipMotor.set(0);
+        	Robot.driveTrain.setMotors(-.5, .5);
+    		//turn right
+    		Timer.delay(1.525);
+    		Robot.driveTrain.setMotors(.5, .5);
     		Robot.forkLift.setMotors(.1, .1);
-    		Robot.clawRollers.stop();
-    		//start the claw motors, go forward slowly, move the lift up
-    		Timer.delay(2);
+    		Timer.delay(1);
     		Robot.driveTrain.setMotors(.5, -.5);
+    		//turn left
+    		Timer.delay(1);
     		Robot.forkLift.setMotors(0, 0);
-    		//turn right, stop the lift motors
-    		Timer.delay(1);
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(1);
+    		Robot.driveTrain.setMotors(.5, .5);
+    		//drive forward, stop the lift motors
+    		Timer.delay(2);
     		Robot.driveTrain.setMotors(0, 0);
     		new ClawOutput();
     		//stop turning, shoot a box
     		Timer.delay(1);
     		Robot.clawRollers.stop();
-    		this.end();
+    		Timer.delay(30);
     		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
-    		Robot.driveTrain.setMotors(.25, .25);
-    		Timer.delay(.5);
-    		Robot.driveTrain.setMotors(0, 0);
-    		new FlipUp();
-    		Timer.delay(.5);
-    		Robot.forkLift.setMotors(.75, .75);
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
-    		new LiftFlipAway();
-    		Timer.delay(.5);
-    		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(.25, .25);
+    		Robot.driveTrain.setMotors(.5,.5);
+        	FlipUp.flipMotor.set(.1);
+        	Timer.delay(1);
+        	Robot.driveTrain.setMotors(0, 0);
+        	Robot.forkLift.setMotors(.5,.5);
+        	Timer.delay(1);
+        	Robot.forkLift.setMotors(0, 0);
+        	FlipUp.flipMotor.set(-.10);
+        	Timer.delay(1);
+        	FlipUp.flipMotor.set(0);
+    		Robot.driveTrain.setMotors(.5, .5);
     		//drive forward slowly
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		this.end();
+    		Timer.delay(30);
     		//stop
     	default :
     		
