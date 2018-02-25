@@ -20,6 +20,7 @@ public class Drivetrain extends Subsystem {
 		rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
 		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_LEFT);
 		backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
+		
 
 		
 	}

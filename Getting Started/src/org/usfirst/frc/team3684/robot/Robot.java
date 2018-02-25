@@ -52,7 +52,8 @@ public class Robot extends IterativeRobot {
 		SendableChooser m_autoposition= new SendableChooser<>();
 		SendableChooser m_scaleorswitch= new SendableChooser<>();
 		//making our autoposition and scale/switch preference as choosables
-		
+	public static boolean isAutonomous;
+	public static boolean isTeleop;
 	public static boolean scaleright;
 	public static boolean ourswitchright;
 	public static boolean theirswitchright;
@@ -73,9 +74,10 @@ public class Robot extends IterativeRobot {
 	
 	
 	//initializing drivetrain for use with gyros
-	public static DifferentialDrive myDrive;
+
 	public SpeedControllerGroup m_right = new SpeedControllerGroup(Drivetrain.backrightMotor, Drivetrain.rightMotor);
 	public SpeedControllerGroup m_left = new SpeedControllerGroup(Drivetrain.backleftMotor, Drivetrain.leftMotor);
+	public static DifferentialDrive myDrive;
 	public static Gyro gyro;
 	public static final double Kp = 0.03;
 	public static final double kAngleSetpoint = 0;
@@ -123,6 +125,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.isAutonomous = true;
 		m_timer.reset();
 		m_timer.start();
 		//restarting timer
@@ -179,6 +182,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopInit() {
+		Robot.isTeleop = true;
+		Robot.isAutonomous = false;
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}

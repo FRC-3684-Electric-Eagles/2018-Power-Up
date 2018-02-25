@@ -99,7 +99,6 @@ public class CenterAuto extends CommandGroup {
     		//shoot box
     		Timer.delay(30);
     		
-    		
     		//restart claw
     		//put code here for right switch
     		break;
@@ -131,7 +130,11 @@ public class CenterAuto extends CommandGroup {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if (Robot.isAutonomous)
         return false;
+    	else {
+    		return true;
+    	}
     }
 
     // Called once after isFinished returns true

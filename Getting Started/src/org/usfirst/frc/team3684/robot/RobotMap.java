@@ -38,7 +38,6 @@ public class RobotMap {
 	public static final int Flip_Forward = 4;
 	public static final int Flip_Backward = 6;
 	//initializing buttons
-	SpeedControllerGroup m_right = new SpeedControllerGroup(DRIVETRAIN_Talon_BACKRIGHT, DRIVETRAIN_Talon_RIGHT);
 	public static int DRIVETRAIN_Talon_LEFT = 2;
 	public static int DRIVETRAIN_Talon_RIGHT = 3;
 	public static int DRIVETRAIN_Talon_BACKLEFT = 0;
