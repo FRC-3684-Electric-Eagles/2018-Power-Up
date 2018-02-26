@@ -58,6 +58,13 @@ public class Robot extends IterativeRobot {
 	public static boolean ourswitchright;
 	public static boolean theirswitchright;
 	public static boolean switchselected;
+	public static boolean DriveForwardFinished;
+	public static boolean CenterAutoFinished;
+	public static boolean RightAutoFinished;
+	public static boolean LeftAutoFinished;
+	public static boolean TurnLeftFinished;
+	public static boolean TurnRightFinished;
+	public static boolean AutoLiftFinished;
 	public static DigitalInput limitswitchtop;
 	public static DigitalInput limitswitchbottom;
 	//adding booleans for autonomous to use switch or scale.
@@ -105,9 +112,8 @@ public class Robot extends IterativeRobot {
 		PowerDistributionPanel pdp = new PowerDistributionPanel();
 		m_scaleorswitch.addDefault("Switch", true);
 		m_scaleorswitch.addObject("Scale", false);
-		m_autoposition.addDefault("Driveforward", new DriveForward());
 		m_autoposition.addObject ("Left", new LeftAuto());
-		m_autoposition.addObject ("Center", new CenterAuto());
+		m_autoposition.addDefault ("Center", new CenterAuto());
 		m_autoposition.addObject ("Right", new RightAuto());
 		SmartDashboard.putData("Auto Position", m_autoposition);
 		SmartDashboard.putData("Scale or switch preferred?", m_scaleorswitch);
@@ -159,7 +165,7 @@ public class Robot extends IterativeRobot {
 			m_autonomousCommand.start();
 	}
 		else {
-			m_autonomousCommand= new DriveForward(); 
+			m_autonomousCommand= new DriveForward(5); 
 			m_autonomousCommand.start();
 		}//adding booleans for use in autonomous as well as choosing which autonomous to use
 		

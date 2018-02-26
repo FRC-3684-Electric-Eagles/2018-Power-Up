@@ -18,6 +18,8 @@ public class turn90right extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.TurnRightFinished = false;
+    	Robot.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,20 +27,24 @@ public class turn90right extends Command {
 double angle = Robot.gyro.getAngle();
 
         Robot.gyro.reset();
-    	while (angle>90) {
-			Robot.myDrive.arcadeDrive(.75, .5);
+    	while (angle>85) {
+			Robot.myDrive.arcadeDrive(.5, .5);
 			Timer.delay(.01);
 		} 
-    	
+    	Robot.TurnRightFinished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if (Robot.TurnRightFinished) {
+    		return true;
+    	} else {
         return false;
     }
-
+    }
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.setMotors(0, 0);
     }
 
     // Called when another command which requires one or more of the same

@@ -65,6 +65,22 @@ public class LeftAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftScale:
+    		/*
+    		addSequential(new DriveForward(1));
+    		addParallel (new AutoLiftFlip(true));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new AutoLiftFlip(false));
+    		addSequential(new DriveForward(7));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new turn90right());
+    		addSequential(new ClawOutput());
+    		Timer.delay(1);
+    		Robot.clawRollers.stop();
+    		*/
+    		
+    		
+    		
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -75,6 +91,7 @@ public class LeftAuto extends CommandGroup {
         	FlipUp.flipMotor.set(-.10);
         	Timer.delay(1);
         	FlipUp.flipMotor.set(0);
+        	//
     		Robot.driveTrain.setMotors(.5, .5);
     		//start claw motors, move forward 25 feet, move lift up
     		Timer.delay(6);

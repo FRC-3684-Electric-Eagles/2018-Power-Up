@@ -49,6 +49,12 @@ public class Drivetrain extends Subsystem {
     	//actually setting the motors to what I told them to do
 	}
     
+    
+    
+    
+    
+    
+    
     public void stop() {
     	leftMotor.set(0);
     	backleftMotor.set(0);

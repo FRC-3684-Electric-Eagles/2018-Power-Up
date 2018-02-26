@@ -25,6 +25,7 @@ public class CenterAuto extends CommandGroup {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.CenterAutoFinished = false;
     	if (Robot.ourswitchright) {
     		autoKind = CenterAutoKind.placeOnRightSwitch;
     		//if the switch is on the right, place it on the right. 
@@ -36,9 +37,29 @@ public class CenterAuto extends CommandGroup {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+	protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftSwitch:
+    		/*
+    		addSequential(new DriveForward(1));
+    		addParallel (new AutoLiftFlip(true));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new AutoLiftFlip(false));
+    		addSequential(new Turn90Left());
+    		addParallel(new AutoLift(.5, 1000));
+    		addSequential(new DriveForward(2));
+    		addSequential(new turn90right());
+    		addSequential(new DriveForward(2));
+    		addParallel(new AutoLift(.1, 2000));
+    		addSequential(new ClawOutput());
+    		Timer.delay(1);
+    		Robot.clawRollers.stop;
+    		 Robot.CenterAutoFinished = true;
+    		*/ 
+    		
+    		
+    		
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -71,6 +92,24 @@ public class CenterAuto extends CommandGroup {
     		//turn claw back on
     		break;
     	case placeOnRightSwitch:
+    		
+    		/*  
+    		addSequential(new DriveForward(1));
+    		addParallel (new AutoLiftFlip(true));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new AutoLiftFlip(false));
+    		addSequential(new turn90right());
+    		addParallel(new AutoLift(.5, 1000));
+    		addSequential(new DriveForward(2));
+    		addSequential(new Turn90Left());
+    		addSequential(new DriveForward(2));
+    		addParallel(new AutoLift(.1, 2000));
+    		addSequential(new ClawOutput());
+    		Timer.delay(1);
+    		Robot.clawRollers.stop();
+    		Robot.CenterAutoFinished = true;
+ 			*/
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -122,7 +161,7 @@ public class CenterAuto extends CommandGroup {
     		Robot.driveTrain.setMotors(-.25, .25);
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		this.end();
+    		Robot.CenterAutoFinished = true;
     		//something must be broken if this happens, but just in case it's still here. It will start the claw and flip up the thingy as well as cross the auto line. If for some reason you want to force a driveforward, use the driveforward command.
     	default:
     		}
@@ -130,10 +169,11 @@ public class CenterAuto extends CommandGroup {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.isAutonomous)
-        return false;
+    	if (Robot.CenterAutoFinished) {
+        return true;
+    	}
     	else {
-    		return true;
+    		return false;
     	}
     }
 

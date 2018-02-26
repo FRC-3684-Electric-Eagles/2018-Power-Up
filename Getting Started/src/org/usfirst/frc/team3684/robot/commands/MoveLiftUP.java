@@ -26,7 +26,7 @@ public class MoveLiftUP extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if  (!(Robot.limitswitchtop.get())) {
-    		Robot.forkLift.setMotors(0, 0);
+    		Robot.forkLift.setMotors(.05, .05);
     		
     	} else {
     		

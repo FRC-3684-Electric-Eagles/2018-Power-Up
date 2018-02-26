@@ -8,43 +8,38 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Turn90Left extends Command {
+public class AutoLiftFlip<in> extends Command {
 
-    public Turn90Left() {
-    	requires(Robot.driveTrain);
+    public AutoLiftFlip(boolean in) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.TurnLeftFinished = false;
-    	Robot.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-double angle = Robot.gyro.getAngle();
-    	Robot.gyro.reset();
-    	while (angle>-85) {
-			Robot.myDrive.arcadeDrive(.5, -.5);
-			Timer.delay(.01);
-		} 
-    	Robot.TurnLeftFinished = true;
+    protected void execute(boolean in) {
+    	if (in) {
+    		Robot.flipUp.flipMotor.set(.2);
+    		Timer.delay(1);
+    		Robot.flipUp.stop();
+    	} else {
+    		Robot.flipUp.flipMotor.set(-.2);
+    		Timer.delay(1);
+    		Robot.flipUp.stop();
+    	}
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.TurnLeftFinished) {
-    		return true;
-    	} else {
         return false;
     }
-    }
+
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.setMotors(0, 0);
     }
 
     // Called when another command which requires one or more of the same
