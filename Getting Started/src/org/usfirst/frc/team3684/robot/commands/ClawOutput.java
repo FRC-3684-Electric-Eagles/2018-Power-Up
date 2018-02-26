@@ -2,6 +2,7 @@ package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,7 +24,8 @@ public class ClawOutput extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.clawRollers.setMotors(-1, 1);
+    	Robot.clawRollers.setMotors(-.25, .25);
+    	Timer.delay(.1);
     	//motors spin, going out
     }
 

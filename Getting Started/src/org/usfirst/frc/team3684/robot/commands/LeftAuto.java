@@ -27,6 +27,7 @@ public class LeftAuto extends CommandGroup {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.LeftAutoFinished = false;
     	if (Robot.switchselected) {
     		if (Robot.ourswitchright) {
     			// if we are on left, prefer the switch, and the switch is on the right, check for the scale.
@@ -76,6 +77,7 @@ public class LeftAuto extends CommandGroup {
     		addSequential(new ClawOutput());
     		Timer.delay(1);
     		Robot.clawRollers.stop();
+    		Robot.LeftAutoFinished = true;
     		*/
     		
     		
@@ -105,12 +107,28 @@ public class LeftAuto extends CommandGroup {
     		//stop moving and shoot a box
     		Timer.delay(1);
     		Robot.clawRollers.stop();
-    		Timer.delay(30);
+    		Robot.LeftAutoFinished = true;
     		//restart claw, stop robot from moving more
     		
     		//put code here for scale
     		break;
     	case placeOnLeftSwitch:
+    		/*
+    		addSequential(new DriveForward(1));
+    		addParallel (new AutoLiftFlip(true));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new AutoLiftFlip(false));
+    		addSequential(new Turn90Left());
+    		addSequential(new DriveForward(1));
+    		addSequential(new turn90right());
+    		addParallel(new AutoLift(.75, 1000));
+    		addSequential(new DriveForward(2));
+    		addParallel(new AutoLift(.05, 2000));
+    		addSequential(new ClawOutput());
+    		Timer.delay(1);
+    		Robot.clawRollers.stop();
+    		Robot.LeftAutoFinished = true;
+    		*/
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -139,7 +157,7 @@ public class LeftAuto extends CommandGroup {
     		//stop turning, shoot a box
     		Timer.delay(1);
     		Robot.clawRollers.stop();
-    		Timer.delay(30);
+    		Robot.LeftAutoFinished = true;
     		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
@@ -157,7 +175,7 @@ public class LeftAuto extends CommandGroup {
     		//drive forward slowly
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		Timer.delay(30);
+    		Robot.LeftAutoFinished = true;
     		//stop
     	default :
     		
@@ -166,10 +184,10 @@ public class LeftAuto extends CommandGroup {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.isAutonomous)
-        return false;
+    	if (Robot.LeftAutoFinished)
+        return true;
     	else {
-    		return true;
+    		return false;
     	}
     }
     // Called once after isFinished returns true

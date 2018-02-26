@@ -87,7 +87,9 @@ public class CenterAuto extends CommandGroup {
     		Timer.delay(2);
     		new ClawOutput();
     		//shoot box
-    		Timer.delay(30);
+    		
+    		Robot.CenterAutoFinished = true;
+    				
     		
     		//turn claw back on
     		break;
@@ -136,7 +138,7 @@ public class CenterAuto extends CommandGroup {
     		Timer.delay(2);
     		new ClawOutput();
     		//shoot box
-    		Timer.delay(30);
+    		Robot.CenterAutoFinished = true;
     		
     		//restart claw
     		//put code here for right switch

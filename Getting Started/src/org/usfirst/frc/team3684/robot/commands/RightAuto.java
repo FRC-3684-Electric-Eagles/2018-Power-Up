@@ -28,6 +28,7 @@ public class RightAuto extends CommandGroup {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.RightAutoFinished = false;
     	if (Robot.switchselected) {
     		if (Robot.ourswitchright) {
     			autoKind = RightAutoKind.placeOnRightSwitch;
@@ -61,7 +62,19 @@ public class RightAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnRightScale:
-
+    		/*
+    		addSequential(new DriveForward(1));
+    		addParallel (new AutoLiftFlip(true));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new AutoLiftFlip(false));
+    		addSequential(new DriveForward(7));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new Turn90Left());
+    		addSequential(new ClawOutput());
+    		Timer.delay(1);
+    		Robot.clawRollers.stop();
+    		Robot.RightAutoFinished = true;
+    		*/
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -91,6 +104,23 @@ public class RightAuto extends CommandGroup {
     		//stop the lift moving down
     		break;
     	case placeOnRightSwitch:
+    		/*
+    		addSequential(new DriveForward(1));
+    		addParallel (new AutoLiftFlip(true));
+    		addSequential(new AutoLift(.75, 1000));
+    		addSequential(new AutoLiftFlip(false));
+    		addSequential(new turn90right());
+    		addSequential(new DriveForward(1));
+    		addSequential(new Turn90Left());
+    		addParallel(new AutoLift(.75, 1000));
+    		addSequential(new DriveForward(2));
+    		addParallel(new AutoLift(.05, 2000));
+    		addSequential(new ClawOutput());
+    		Timer.delay(1);
+    		Robot.clawRollers.stop();
+    		Robot.RightAutoFinished = true;
+    		*/
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -137,7 +167,7 @@ public class RightAuto extends CommandGroup {
     		//drive forward slowly
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
-    		Timer.delay(30);
+    		Robot.RightAutoFinished = true;
     		//stop
     	default:
     		}
@@ -145,10 +175,10 @@ public class RightAuto extends CommandGroup {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.isAutonomous)
-        return false;
+    	if (Robot.RightAutoFinished)
+        return true;
     	else {
-    		return true;
+    		return false;
     	}
     }
     // Called once after isFinished returns true
