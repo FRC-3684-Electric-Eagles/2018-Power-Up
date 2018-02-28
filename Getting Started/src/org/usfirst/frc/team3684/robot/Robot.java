@@ -86,8 +86,6 @@ public class Robot extends IterativeRobot {
 	public SpeedControllerGroup m_left = new SpeedControllerGroup(Drivetrain.backleftMotor, Drivetrain.leftMotor);
 	public static DifferentialDrive myDrive;
 	public static Gyro gyro;
-	public static final double Kp = 0.03;
-	public static final double kAngleSetpoint = 0;
 	//more experimental driving code
 	/**
 	 * This function is run when the robot is first started up and should be
