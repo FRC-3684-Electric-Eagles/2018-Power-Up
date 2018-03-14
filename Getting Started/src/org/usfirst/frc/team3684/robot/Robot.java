@@ -15,6 +15,7 @@ import org.usfirst.frc.team3684.robot.commands.DriveForward;
 import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
 import org.usfirst.frc.team3684.robot.commands.LeftAuto;
 import org.usfirst.frc.team3684.robot.commands.RightAuto;
+import org.usfirst.frc.team3684.robot.commands.TeleopLift;
 import org.usfirst.frc.team3684.robot.subsystems.ClawRollers;
 import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
@@ -81,11 +82,7 @@ public class Robot extends IterativeRobot {
 	
 	
 	//initializing drivetrain for use with gyros
-
-	public SpeedControllerGroup m_right = new SpeedControllerGroup(Drivetrain.backrightMotor, Drivetrain.rightMotor);
-	public SpeedControllerGroup m_left = new SpeedControllerGroup(Drivetrain.backleftMotor, Drivetrain.leftMotor);
-	public static DifferentialDrive myDrive;
-	public static Gyro gyro;
+	public static AnalogGyro gyro;
 	//more experimental driving code
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -93,7 +90,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		myDrive = new DifferentialDrive(m_left, m_right);
 		gyro = new AnalogGyro(0);
 		//adding gyro code
 		
@@ -193,7 +189,6 @@ public class Robot extends IterativeRobot {
 		}
 		 m_teleopCommand = new DriveTrain_TankDrive();
 		 m_teleopCommand.start();
-		
 	}
 
 	/**

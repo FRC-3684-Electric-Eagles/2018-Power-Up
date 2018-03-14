@@ -30,31 +30,27 @@ public class OI {
 	
 	public Joystick m_leftstick= new Joystick(RobotMap.LEFT_JOYSTICK_USB_PORT_0);
 	public Joystick m_rightstick= new Joystick(RobotMap.RIGHT_JOYSTICK_USB_PORT_1);
+	public Joystick m_operatorstick= new Joystick(RobotMap.OPERATOR_JOYSTICK_USB_PORT_2);
 	//Joysticks here
 	
 	
 	
 	public OI() {
 	//creating buttons
-	Button left_trigger= new JoystickButton(m_leftstick, RobotMap.CLAWBUTTONclose);
 	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
-	Button leftbutton1= new JoystickButton (m_leftstick, RobotMap.CLAWBUTTONopen);
 	Button leftbutton4= new JoystickButton (m_leftstick, RobotMap.Flip_Forward);
 	Button leftbutton6= new JoystickButton (m_leftstick, RobotMap.Flip_Backward);
-	Button rightbutton3 = new JoystickButton (m_rightstick, RobotMap.Climb);
-	Button rightbutton0 = new JoystickButton (m_rightstick, RobotMap.ForkliftUp);
-	Button right_trigger= new JoystickButton (m_rightstick, RobotMap.ForkliftDown);
 	Button rightbutton5= new JoystickButton (m_rightstick, RobotMap.Turn_Right);
+	Button opbutton2 = new JoystickButton (m_operatorstick, RobotMap.ClawIntake);
+	Button opbutton1 = new JoystickButton (m_operatorstick, RobotMap.ClawOutput);
+	Button opbutton3 = new JoystickButton (m_operatorstick, RobotMap.Flip_Backward);
+	Button opbutton5 = new JoystickButton (m_operatorstick, RobotMap.Flip_Forward);
+	
 	//binding buttons to commands
-	left_trigger.whileHeld(new ClawOutput());
-	leftbutton1.whileHeld(new ClawIntake());
-	//leftbutton5.whileHeld(new Turnleft());
-	leftbutton4.whileHeld(new LiftFlip());
-	leftbutton6.whileHeld(new LiftFlipAway());
-	rightbutton0.whileHeld(new MoveLiftUP());
-	right_trigger.whileHeld(new MoveLiftDOWN());
-	//rightbutton5.whileHeld(new Turnright());
-	//rightbutton3.whileHeld(new ClimbWithLift());
+	opbutton1.whileHeld(new ClawOutput());
+	opbutton2.whileHeld(new ClawIntake());
+	opbutton3.whileHeld(new LiftFlip());
+	opbutton5.whileHeld(new LiftFlipAway());
 	
 	//these are all held, so commands will run until you let go. 
 	

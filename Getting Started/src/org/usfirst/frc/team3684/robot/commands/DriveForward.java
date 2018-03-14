@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.Robot;
+import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -56,7 +57,7 @@ public class DriveForward<time> extends CommandGroup {
     	double end = t+time;
     	PID();
     	while (System.currentTimeMillis()> end) {
-    	Robot.myDrive.arcadeDrive(.75, rcw);
+    	Drivetrain.myDrive.arcadeDrive(.75, rcw);
 		Timer.delay(0.02);
     	}
     	Robot.DriveForwardFinished = true;

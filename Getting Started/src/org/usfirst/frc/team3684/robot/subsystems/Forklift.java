@@ -2,6 +2,7 @@ package org.usfirst.frc.team3684.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.CANTalon;
 import org.usfirst.frc.team3684.robot.RobotMap;
+import org.usfirst.frc.team3684.robot.commands.TeleopLift;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 //this entire damn thing is basically exactly the same as Drivetrain.java cause i'm lazy as hell, go there for comments
@@ -19,6 +20,7 @@ public class Forklift extends Subsystem {
 	}
 
 	 public void initDefaultCommand() {
+		 setDefaultCommand(new TeleopLift());
 	        // Set the default command for a subsystem here.
 	    }
 		

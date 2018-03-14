@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.Robot;
+import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -28,7 +29,7 @@ double angle = Robot.gyro.getAngle();
 
         Robot.gyro.reset();
     	while (angle>85) {
-			Robot.myDrive.arcadeDrive(.5, .5);
+			Drivetrain.myDrive.arcadeDrive(.5, .5);
 			Timer.delay(.01);
 		} 
     	Robot.TurnRightFinished = true;
