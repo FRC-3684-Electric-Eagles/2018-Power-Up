@@ -62,6 +62,8 @@ public class RightAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnRightScale:
+    		RightScaleAuto ScaleAuto = new RightScaleAuto();
+    		ScaleAuto.start();
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -74,7 +76,7 @@ public class RightAuto extends CommandGroup {
     		Timer.delay(1);
     		Robot.clawRollers.stop();
     		Robot.RightAutoFinished = true;
-    		*/
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -103,7 +105,10 @@ public class RightAuto extends CommandGroup {
     		Timer.delay(30);
     		//stop the lift moving down
     		break;
+    		*/
     	case placeOnRightSwitch:
+    		RightSwitchAuto SwitchAuto = new RightSwitchAuto();
+    		SwitchAuto.start();
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -119,7 +124,7 @@ public class RightAuto extends CommandGroup {
     		Timer.delay(1);
     		Robot.clawRollers.stop();
     		Robot.RightAutoFinished = true;
-    		*/
+    		
     		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
@@ -152,6 +157,7 @@ public class RightAuto extends CommandGroup {
     		Robot.clawRollers.stop();
     		Timer.delay(30);
     		break;
+    		*/
     	case driveForward:
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);

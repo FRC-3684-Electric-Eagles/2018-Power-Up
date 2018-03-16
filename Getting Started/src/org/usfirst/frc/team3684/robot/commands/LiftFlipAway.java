@@ -23,7 +23,7 @@ public class LiftFlipAway extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	FlipUp.flipMotor.set(-.05);
+    	FlipUp.flipMotor.set(-.1);
     	Timer.delay(.25);
     	FlipUp.flipMotor.set(0);
     	Robot.flipUp.stop();

@@ -1,34 +1,35 @@
 package org.usfirst.frc.team3684.robot.commands;
 
 import org.usfirst.frc.team3684.robot.Robot;
+import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutoLift extends Command {
-	public double time;
-	public double speed;
+public class AutoLiftFlipAway extends Command {
 
-    public AutoLift(double time,double speed) {
+    public AutoLiftFlipAway() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.forkLift);
-    	this.time = time;
-    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.forkLift.setMotors(0, 0);
-    	setTimeout(time);
+    	setTimeout(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.forkLift.setMotors(speed, speed);	
-    }
+    
+    		FlipUp.flipMotor.set(-.2);
+    		Timer.delay(1);
+    	
+    	}
+    	
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -37,7 +38,7 @@ public class AutoLift extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.forkLift.setMotors(0, 0);
+    	Robot.flipUp.stop();
     }
 
     // Called when another command which requires one or more of the same

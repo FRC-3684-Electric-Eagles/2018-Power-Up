@@ -114,6 +114,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Claw Rollers", clawRollers);
 		SmartDashboard.putData("Drivetrain", driveTrain);
 		SmartDashboard.putData("Lift", forkLift);
+		SmartDashboard.putData("gyro", gyro);
+		SmartDashboard.putData("DriveForward", new DriveForward(3, .5));
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
 		//adding stuff to smartDashboard
@@ -159,7 +161,7 @@ public class Robot extends IterativeRobot {
 			m_autonomousCommand.start();
 	}
 		else {
-			m_autonomousCommand= new DriveForward(5); 
+			m_autonomousCommand= new DriveForward(5, .5); 
 			m_autonomousCommand.start();
 		}//adding booleans for use in autonomous as well as choosing which autonomous to use
 		
@@ -186,7 +188,9 @@ public class Robot extends IterativeRobot {
 		Robot.isAutonomous = false;
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
+			
 		}
+		Scheduler.getInstance().removeAll();
 		 m_teleopCommand = new DriveTrain_TankDrive();
 		 m_teleopCommand.start();
 	}

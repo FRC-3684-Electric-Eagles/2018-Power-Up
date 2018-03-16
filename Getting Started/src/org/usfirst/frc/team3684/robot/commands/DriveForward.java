@@ -11,19 +11,22 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DriveForward<time> extends CommandGroup {
+public class DriveForward extends Command {
 
 	int P = 1;
-	int I = 1;
-	int D = 1;
+	//int I = 1;
+	//int D = 1;
     int integral, previous_error, setpoint = 0;
 	private double rcw;
+	public double time;
+	public double power;
     
-    public DriveForward(double time) {
+    public DriveForward(double time, double power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
-    	time = scaleTime(time);
+    	this.time = time;
+    	this.power = power;
     }
     
     
@@ -37,31 +40,29 @@ public class DriveForward<time> extends CommandGroup {
         double error = setpoint - Robot.gyro.getAngle(); // Error = Target - Actual
         this.integral += (error*.02); // Integral is increased by the error*time (which is .02 seconds using normal IterativeRobot)
         double derivative = (error - this.previous_error) / .02;
-        this.rcw = P*error + I*this.integral + D*derivative;
+        rcw = P*error; //+ I*this.integral + D*derivative;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(time);
     	Robot.driveTrain.setMotors(0, 0);
-    	Robot.DriveForwardFinished = false;
     	Robot.gyro.reset();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(double time) {
-    	time = scaleTime(time);
+    protected void execute() {
+
     	//double angle = Robot.gyro.getAngle();
+    	//PID();
     	
-    	long t= System.currentTimeMillis();
-    	double end = t+time;
-    	PID();
-    	while (System.currentTimeMillis()> end) {
-    	Drivetrain.myDrive.arcadeDrive(.75, rcw);
-		Timer.delay(0.02);
+    	while(Robot.isAutonomous) {
+		Drivetrain.myDrive.arcadeDrive (-power, (-Robot.gyro.getAngle()/360));
+		Timer.delay(.02);
     	}
-    	Robot.DriveForwardFinished = true;
-    } 
+    	}
+     
     
     	
 		
@@ -71,23 +72,17 @@ public class DriveForward<time> extends CommandGroup {
     
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.DriveForwardFinished = true) {
-        return true;
-    }
-    	else {
-    		return false;
+    	return isTimedOut();
+    	
     	}
-    }
+    
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	Robot.driveTrain.setMotors(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    }
-    public double scaleTime(double time) {
-    	return 1000.0 * time;
     }
 }

@@ -6,6 +6,7 @@ import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
@@ -27,6 +28,7 @@ public class CenterAuto extends CommandGroup {
     protected void initialize() {
     	Robot.CenterAutoFinished = false;
     	if (Robot.ourswitchright) {
+    		
     		autoKind = CenterAutoKind.placeOnRightSwitch;
     		//if the switch is on the right, place it on the right. 
     	} else {
@@ -40,22 +42,10 @@ public class CenterAuto extends CommandGroup {
 	protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftSwitch:
+    		CenterAutoLeft LeftAuto = new CenterAutoLeft();
+    		LeftAuto.start();
+    		Robot.CenterAutoFinished = true;
     		
-    		addSequential(new DriveForward(1));
-    		addParallel (new AutoLiftFlip(true));
-    		addSequential(new AutoLift(.75, 1000));
-    		addSequential(new AutoLiftFlip(false));
-    		addSequential(new Turn90Left());
-    		addParallel(new AutoLift(.5, 1000));
-    		addSequential(new DriveForward(2));
-    		addSequential(new turn90right());
-    		addSequential(new DriveForward(2));
-    		addParallel(new AutoLift(.1, 2000));
-    		addSequential(new ClawOutput());
-    		Timer.delay(1);
-    		Robot.clawRollers.stop();
-    		 Robot.CenterAutoFinished = true;
-    		 
     		
     		
     		
@@ -95,23 +85,10 @@ public class CenterAuto extends CommandGroup {
     		break;
     	case placeOnRightSwitch:
     		
-    		/*  
-    		addSequential(new DriveForward(1));
-    		addParallel (new AutoLiftFlip(true));
-    		addSequential(new AutoLift(.75, 1000));
-    		addSequential(new AutoLiftFlip(false));
-    		addSequential(new turn90right());
-    		addParallel(new AutoLift(.5, 1000));
-    		addSequential(new DriveForward(2));
-    		addSequential(new Turn90Left());
-    		addSequential(new DriveForward(2));
-    		addParallel(new AutoLift(.1, 2000));
-    		addSequential(new ClawOutput());
-    		Timer.delay(1);
-    		Robot.clawRollers.stop();
+    		CenterAutoRight RightAuto = new CenterAutoRight();
+    		RightAuto.start();
     		Robot.CenterAutoFinished = true;
- 			*/
-    		
+    		/*  
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -139,11 +116,15 @@ public class CenterAuto extends CommandGroup {
     		new ClawOutput();
     		//shoot box
     		Robot.CenterAutoFinished = true;
+ 			*/
+    		
+    		
     		
     		//restart claw
     		//put code here for right switch
     		break;
     	case driveForward:
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -164,6 +145,7 @@ public class CenterAuto extends CommandGroup {
     		Timer.delay(4);
     		Robot.driveTrain.setMotors(0, 0);
     		Robot.CenterAutoFinished = true;
+    		
     		//something must be broken if this happens, but just in case it's still here. It will start the claw and flip up the thingy as well as cross the auto line. If for some reason you want to force a driveforward, use the driveforward command.
     	default:
     		}

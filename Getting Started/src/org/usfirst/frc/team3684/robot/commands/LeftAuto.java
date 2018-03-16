@@ -66,6 +66,8 @@ public class LeftAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftScale:
+    		LeftScaleAuto ScaleAuto = new LeftScaleAuto();
+    		ScaleAuto.start();
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -78,7 +80,7 @@ public class LeftAuto extends CommandGroup {
     		Timer.delay(1);
     		Robot.clawRollers.stop();
     		Robot.LeftAutoFinished = true;
-    		*/
+    		
     		
     		
     		
@@ -111,8 +113,12 @@ public class LeftAuto extends CommandGroup {
     		//restart claw, stop robot from moving more
     		
     		//put code here for scale
+    		 *
+    		 */
     		break;
     	case placeOnLeftSwitch:
+    		LeftSwitchAuto SwitchAuto = new LeftSwitchAuto();
+    		SwitchAuto.start();
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -128,7 +134,7 @@ public class LeftAuto extends CommandGroup {
     		Timer.delay(1);
     		Robot.clawRollers.stop();
     		Robot.LeftAutoFinished = true;
-    		*/
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
@@ -158,9 +164,11 @@ public class LeftAuto extends CommandGroup {
     		Timer.delay(1);
     		Robot.clawRollers.stop();
     		Robot.LeftAutoFinished = true;
+    		*/
     		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
+    		
     		Robot.driveTrain.setMotors(.5,.5);
         	FlipUp.flipMotor.set(.1);
         	Timer.delay(1);
