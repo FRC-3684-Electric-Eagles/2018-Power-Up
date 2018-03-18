@@ -49,12 +49,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends TimedRobot {
-		public static Command m_autonomousCommand;
-		Command m_teleopCommand;
-		//idk what this does tbh
-		SendableChooser m_autoposition= new SendableChooser<>();
-		SendableChooser m_scaleorswitch= new SendableChooser<>();
-		//making our autoposition and scale/switch preference as choosables
+	public static Command m_autonomousCommand;
+	public static Command m_teleopCommand;
+	//setting commands for teleop and autonomous. I don't believe teleop is used.
+	SendableChooser m_autoposition= new SendableChooser<>();
+	SendableChooser m_scaleorswitch= new SendableChooser<>();
+	//making our autoposition and scale/switch preference as choosables
 	public static boolean hasgameData;
 	public static boolean isAutonomous;
 	public static boolean isTeleop;
@@ -65,11 +65,7 @@ public class Robot extends TimedRobot {
 	public static boolean LeftAutoFinished;
 	public static boolean CenterAutoFinished;
 	public static boolean RightAutoFinished;
-	public static DigitalInput limitswitchtop;
-	public static DigitalInput limitswitchbottom;
 	//adding booleans for autonomous to use switch or scale.
-
-	//starting timer
 	public static OI m_oi;
 	//Instantiating OI
 	public static Drivetrain driveTrain;
@@ -77,12 +73,12 @@ public class Robot extends TimedRobot {
 	public static ClawRollers clawRollers;
 	public static FlipUp flipUp;
 	//Instantiating subsystems
-	
-	
-	//initializing drivetrain for use with gyros
 	public static AnalogGyro gyro;
+	//instantiating gyro sandwich
+	public static DigitalInput limitswitchtop;
+	public static DigitalInput limitswitchbottom;
+	//instantiating limit switches
 	
-	//more experimental driving code
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -90,9 +86,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		gyro = new AnalogGyro(0);
-		//adding gyro code
-		
-		
+		//initializing gyro
 		limitswitchtop = new DigitalInput(1);
 		limitswitchbottom = new DigitalInput(0);
 		driveTrain= new Drivetrain();
@@ -108,6 +102,7 @@ public class Robot extends TimedRobot {
 		m_autoposition.addObject ("Left", new LeftAuto());
 		m_autoposition.addDefault ("Center", new CenterAuto());
 		m_autoposition.addObject ("Right", new RightAuto());
+		//Choosers for shuffleBoard
 		SmartDashboard.putData("Auto Position", m_autoposition);
 		SmartDashboard.putData("Scale or switch preferred?", m_scaleorswitch);
 		SmartDashboard.putData("Claw Rollers", clawRollers);
@@ -119,8 +114,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("TurnLeft", new Turn90Left());
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
-		//adding stuff to smartDashboard
-		
+		//useful data for shuffleBoard.
 	}
 	
 	/**
@@ -130,48 +124,43 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		gyro.reset();
 		Robot.isAutonomous = true;
-		//restarting timer
-			String gameData;
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			if(gameData!=null) {
-				hasgameData = true;
-				if(gameData.charAt(0) == 'L')
-				{
-					ourswitchright = false;
-						
-				} else {
-					ourswitchright = true;
-				}
-				if(gameData.charAt(1) == 'L')
-				{
-					scaleright = false;
-				}
-				else {
-					scaleright = true;
-				}
-				if(gameData.charAt(2) == 'L')
-				{
-					theirswitchright = false;
-				}
-				else {
-					theirswitchright = true;
-				}
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData!=null) {
+			hasgameData = true;
+			if(gameData.charAt(0) == 'L')
+			{
+				ourswitchright = false;
+			} else {
+				ourswitchright = true;
+			}
+			if(gameData.charAt(1) == 'L')
+			{
+				scaleright = false;
+			}
+			else {
+				scaleright = true;
+			}
+			if(gameData.charAt(2) == 'L')
+			{
+				theirswitchright = false;
+			}
+			else {
+				theirswitchright = true;
+			}
 				
-				switchselected = (boolean) m_scaleorswitch.getSelected();
+			switchselected = (boolean) m_scaleorswitch.getSelected();
 				
-				m_autonomousCommand = (Command) m_autoposition.getSelected();
-				if (m_autonomousCommand != null) {
-				m_autonomousCommand.start();
-				}
-				}
+			m_autonomousCommand = (Command) m_autoposition.getSelected();
+			if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
+			}
+		}
 		
-
-		//adding booleans for use in autonomous as well as choosing which autonomous to use
-		
+		//adding booleans for use in autonomous as well as choosing which autonomous to use	
 		SmartDashboard.putBoolean("ourswitchonright?", ourswitchright);
 		SmartDashboard.putBoolean("scaleonright?", scaleright);
 		SmartDashboard.putBoolean("theirswitchonright?", theirswitchright);
-
 	}
 
 	/**
@@ -179,11 +168,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		
 		Scheduler.getInstance().run();
+		//runs the scheduler so we can run the commands set in autos
 	}
 	
-
 	/**
 	 * This function is called once each time the robot enters teleoperated mode.
 	 */
@@ -195,11 +183,13 @@ public class Robot extends TimedRobot {
 		Robot.isAutonomous = false;
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
-			
 		}
+		//making sure the robit knows we are in teleop.
 		Scheduler.getInstance().removeAll();
+		//Removing all commands from the scheduler, just in case something went horribly wrong in auto
 		 m_teleopCommand = new DriveTrain_TankDrive();
 		 m_teleopCommand.start();
+		 //I don't understand this part, because I thought I called TankDrive as the default anyway? Meh.
 	}
 
 	/**
@@ -208,22 +198,21 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		
-		//again i honestly don't know what this does, I think that it is used for command scheduling?
+		//command scheduling. Most of the commands are in the OI.
 
 	}
 	public void disabledInit() {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		
 		if (m_teleopCommand != null) {
 			m_teleopCommand.cancel();
-		}//disable auto command AND teleop command.
+		}//disable auto command and teleop command, but checks if they exist to prevent crashes.
 	}
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		//see above
+		//I feel like this shouldn't be here, I'll check with somebody
 	}
 
 	/**
@@ -231,5 +220,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		Scheduler.getInstance().run();
+		//i THINK this goes here. 
 	}
 }

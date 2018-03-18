@@ -1,9 +1,13 @@
 package org.usfirst.frc.team3684.robot.subsystems;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.can.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import org.usfirst.frc.team3684.robot.Robot;
 import org.usfirst.frc.team3684.robot.RobotMap;
 import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
 /**
@@ -18,23 +22,21 @@ public class Drivetrain extends Subsystem {
 	public static SpeedControllerGroup m_right;
 	public static SpeedControllerGroup m_left;
 	public static DifferentialDrive myDrive;
-	public Drivetrain() {
 	
+	public Drivetrain() {
 		leftMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_BACKLEFT);
+		leftMotor.setInverted(true);
 		rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
 		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_LEFT);
+		backleftMotor.setInverted(true);
 		backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
 		m_left = new SpeedControllerGroup(Drivetrain.backleftMotor, Drivetrain.leftMotor);
 		m_right  = new SpeedControllerGroup(Drivetrain.backrightMotor, Drivetrain.rightMotor);
 		myDrive = new DifferentialDrive(m_left, m_right);
 		
-
-
-		
 	}
 	
 	  public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         setDefaultCommand(new DriveTrain_TankDrive());
     }
 	
@@ -47,21 +49,12 @@ public class Drivetrain extends Subsystem {
     }
     
     public void setMotorsRaw(double left, double right) {
-    	left = safetyTest(left);
-    	right = safetyTest(right);
-    	//testing for... "safety"? What is this alien concept?
     	leftMotor.set(left);
     	backleftMotor.set(left);
     	rightMotor.set(right);		
     	backrightMotor.set(right);
     	//actually setting the motors to what I told them to do
 	}
-    
-    
-    
-    
-    
-    
     
     public void stop() {
     	leftMotor.set(0);
@@ -71,16 +64,8 @@ public class Drivetrain extends Subsystem {
     	//stopping the motors. 
     }
     
-    private double safetyTest(double motorValue) {
-        motorValue = (motorValue < -1) ? -1 : motorValue;
-        motorValue = (motorValue > 1) ? 1 : motorValue;
-        
-        return motorValue;
-        //apparently this is a safety test. who knew. 
-    }
-    
     private double scaleLeft(double left) {
-    	return -1.0 * left;
+    	return 1.0 * left;
     }
     
     private double scaleRight(double right) {
