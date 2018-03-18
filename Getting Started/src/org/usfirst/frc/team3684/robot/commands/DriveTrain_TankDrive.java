@@ -32,7 +32,7 @@ public class DriveTrain_TankDrive extends Command {
         leftPower = (Math.abs(leftPower) < deadzone)? 0 : (-1)*leftPower;
         rightPower = (Math.abs(rightPower) < deadzone)? 0 : (-1)*rightPower;
         
-        Robot.driveTrain.setMotors(leftPower, rightPower);
+        Robot.driveTrain.myDrive.tankDrive(-leftPower, -rightPower);
         //above should be commented out to stop it from moving, but I don't know if it actually works so be VERY careful unless you want to smash into someone
     }
 

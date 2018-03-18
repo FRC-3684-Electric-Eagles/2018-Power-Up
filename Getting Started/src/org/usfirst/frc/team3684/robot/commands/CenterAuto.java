@@ -28,7 +28,6 @@ public class CenterAuto extends CommandGroup {
     protected void initialize() {
     	Robot.CenterAutoFinished = false;
     	if (Robot.ourswitchright) {
-    		
     		autoKind = CenterAutoKind.placeOnRightSwitch;
     		//if the switch is on the right, place it on the right. 
     	} else {
@@ -44,6 +43,7 @@ public class CenterAuto extends CommandGroup {
     	case placeOnLeftSwitch:
     		CenterAutoLeft LeftAuto = new CenterAutoLeft();
     		LeftAuto.start();
+    		Robot.m_autonomousCommand = new CenterAutoLeft();
     		Robot.CenterAutoFinished = true;
     		
     		
@@ -87,6 +87,7 @@ public class CenterAuto extends CommandGroup {
     		
     		CenterAutoRight RightAuto = new CenterAutoRight();
     		RightAuto.start();
+    		Robot.m_autonomousCommand = new CenterAutoRight();
     		Robot.CenterAutoFinished = true;
     		/*  
     		Robot.driveTrain.setMotors(.5,.5);
@@ -124,26 +125,9 @@ public class CenterAuto extends CommandGroup {
     		//put code here for right switch
     		break;
     	case driveForward:
-    		
-    		Robot.driveTrain.setMotors(.5,.5);
-        	FlipUp.flipMotor.set(.1);
-        	Timer.delay(1);
-        	Robot.driveTrain.setMotors(0, 0);
-        	Robot.forkLift.setMotors(.5,.5);
-        	Timer.delay(1);
-        	Robot.forkLift.setMotors(0, 0);
-        	FlipUp.flipMotor.set(-.10);
-        	Timer.delay(1);
-        	FlipUp.flipMotor.set(0);
-    		Robot.forkLift.setMotors(.75, .75);
-    		Timer.delay(2);
-    		Robot.forkLift.setMotors(0, 0);
-    		new LiftFlipAway();
-    		Timer.delay(.5);
-    		Robot.flipUp.stop();
-    		Robot.driveTrain.setMotors(-.25, .25);
-    		Timer.delay(4);
-    		Robot.driveTrain.setMotors(0, 0);
+    		AutoDriveForward ForwardAuto = new AutoDriveForward();
+    		ForwardAuto.start();
+    		Robot.m_autonomousCommand = new AutoDriveForward();
     		Robot.CenterAutoFinished = true;
     		
     		//something must be broken if this happens, but just in case it's still here. It will start the claw and flip up the thingy as well as cross the auto line. If for some reason you want to force a driveforward, use the driveforward command.

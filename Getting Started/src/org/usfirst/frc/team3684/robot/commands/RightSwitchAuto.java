@@ -4,6 +4,7 @@ import org.usfirst.frc.team3684.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightSwitchAuto extends CommandGroup {
 
     public RightSwitchAuto() {
+    	
     	addSequential(new DriveForward(1, .75));
 		addParallel (new AutoLiftFlip());
 		addSequential(new AutoLift(1, .75));
@@ -23,9 +25,9 @@ public class RightSwitchAuto extends CommandGroup {
 		addSequential(new DriveForward(2, .75));
 		addParallel(new AutoLift(.05, 2000));
 		addSequential(new ClawOutput());
-		Timer.delay(1);
-		Robot.clawRollers.stop();
-        // Add Commands here:
+		addSequential (new WaitCommand(1));
+		addSequential (new ClawStop());
+		// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

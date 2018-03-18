@@ -62,8 +62,10 @@ public class RightAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnRightScale:
-    		RightScaleAuto ScaleAuto = new RightScaleAuto();
+    		AutoDriveForward ScaleAuto = new AutoDriveForward();
     		ScaleAuto.start();
+    		Robot.m_autonomousCommand = new AutoDriveForward();
+    		Robot.RightAutoFinished = true;
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -107,8 +109,10 @@ public class RightAuto extends CommandGroup {
     		break;
     		*/
     	case placeOnRightSwitch:
-    		RightSwitchAuto SwitchAuto = new RightSwitchAuto();
+    		AutoDriveForward SwitchAuto = new AutoDriveForward();
     		SwitchAuto.start();
+    		Robot.m_autonomousCommand = new AutoDriveForward();
+    		Robot.RightAutoFinished = true;
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -159,20 +163,9 @@ public class RightAuto extends CommandGroup {
     		break;
     		*/
     	case driveForward:
-    		Robot.driveTrain.setMotors(.5,.5);
-        	FlipUp.flipMotor.set(.1);
-        	Timer.delay(1);
-        	Robot.driveTrain.setMotors(0, 0);
-        	Robot.forkLift.setMotors(.5,.5);
-        	Timer.delay(1);
-        	Robot.forkLift.setMotors(0, 0);
-        	FlipUp.flipMotor.set(-.10);
-        	Timer.delay(1);
-        	FlipUp.flipMotor.set(0);
-    		Robot.driveTrain.setMotors(.5, .5);
-    		//drive forward slowly
-    		Timer.delay(4);
-    		Robot.driveTrain.setMotors(0, 0);
+    		AutoDriveForward ForwardAuto = new AutoDriveForward();
+    		ForwardAuto.start();
+    		Robot.m_autonomousCommand = new AutoDriveForward();
     		Robot.RightAutoFinished = true;
     		//stop
     	default:

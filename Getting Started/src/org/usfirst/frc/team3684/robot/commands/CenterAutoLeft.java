@@ -5,6 +5,7 @@ import org.usfirst.frc.team3684.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -17,17 +18,24 @@ public class CenterAutoLeft extends CommandGroup {
     	addSequential(new DriveForward(1,.75));
 		addParallel (new AutoLiftFlip());
 		addSequential(new AutoLift(1, .75));
+		addParallel (new timedintake());
 		addParallel (new AutoLiftFlip());
-		addSequential(new AutoLiftFlipAway());
 		addSequential(new Turn90Left());
-		addParallel(new AutoLift(1, .75));
+		addParallel (new timedintake());
+		addParallel(new AutoLiftFlipAway());
 		addSequential(new DriveForward(2,.75));
+		addParallel (new timedintake());
 		addSequential(new turn90right());
-		addSequential(new DriveForward(2,.75));
-		addParallel(new AutoLift(2, .05));
+		addParallel (new timedintake());
+		addSequential(new AutoLift(2.1, .65));
+		addParallel (new timedintake());
+		addSequential(new DriveForward(2.75,.75));
+		addParallel (new timedintake());
+		addSequential (new WaitCommand(2));
 		addSequential(new ClawOutput());
-		Timer.delay(1);
-		Robot.clawRollers.stop();
+		addSequential (new WaitCommand(1));
+		addSequential (new ClawStop());
+		
 		//Robot.CenterAutoFinished = true;
     }
 }

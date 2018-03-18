@@ -66,8 +66,10 @@ public class LeftAuto extends CommandGroup {
     protected void execute() {
     	switch (autoKind) {
     	case placeOnLeftScale:
-    		LeftScaleAuto ScaleAuto = new LeftScaleAuto();
+    		AutoDriveForward ScaleAuto = new AutoDriveForward();
     		ScaleAuto.start();
+    		Robot.m_autonomousCommand = new AutoDriveForward();
+    		Robot.LeftAutoFinished = true;
     		/*
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
@@ -117,9 +119,16 @@ public class LeftAuto extends CommandGroup {
     		 */
     		break;
     	case placeOnLeftSwitch:
-    		LeftSwitchAuto SwitchAuto = new LeftSwitchAuto();
+    		
+    		AutoDriveForward SwitchAuto = new AutoDriveForward();
     		SwitchAuto.start();
-    		/*
+    		Robot.m_autonomousCommand = new AutoDriveForward();
+    		Robot.LeftAutoFinished = true;
+    		/*LeftSwitchAuto SwitchAuto = new LeftSwitchAuto();
+    		SwitchAuto.start();
+    		Robot.m_autonomousCommand = new LeftSwitchAuto();
+    		Robot.LeftAutoFinished = true;
+    		
     		addSequential(new DriveForward(1));
     		addParallel (new AutoLiftFlip(true));
     		addSequential(new AutoLift(.75, 1000));
@@ -168,23 +177,10 @@ public class LeftAuto extends CommandGroup {
     		//restart the claw intake, make sure AUTO doesn't restart.
     		break;
     	case driveForward:
-    		
-    		Robot.driveTrain.setMotors(.5,.5);
-        	FlipUp.flipMotor.set(.1);
-        	Timer.delay(1);
-        	Robot.driveTrain.setMotors(0, 0);
-        	Robot.forkLift.setMotors(.5,.5);
-        	Timer.delay(1);
-        	Robot.forkLift.setMotors(0, 0);
-        	FlipUp.flipMotor.set(-.10);
-        	Timer.delay(1);
-        	FlipUp.flipMotor.set(0);
-    		Robot.driveTrain.setMotors(.5, .5);
-    		//drive forward slowly
-    		Timer.delay(4);
-    		Robot.driveTrain.setMotors(0, 0);
+    		AutoDriveForward ForwardAuto = new AutoDriveForward();
+    		ForwardAuto.start();
+    		Robot.m_autonomousCommand = new AutoDriveForward();
     		Robot.LeftAutoFinished = true;
-    		//stop
     	default :
     		
     	}

@@ -4,6 +4,7 @@ import org.usfirst.frc.team3684.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -11,21 +12,26 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterAutoRight extends CommandGroup {
 
     public CenterAutoRight() {
-    	addSequential(new DriveForward(1, .75));
+    	addSequential(new DriveForward(1,.75));
 		addParallel (new AutoLiftFlip());
 		addSequential(new AutoLift(1, .75));
+		addParallel (new timedintake());
 		addParallel (new AutoLiftFlip());
-		addSequential(new AutoLiftFlipAway());
 		addSequential(new turn90right());
-		addParallel(new AutoLift(1, .75));
-		addSequential(new DriveForward(2, .75));
-		addParallel (new AutoLift(2,.05));
+		addParallel (new timedintake());
+		addParallel(new AutoLiftFlipAway());
+		addSequential(new DriveForward(2,.75));
+		addParallel (new timedintake());
 		addSequential(new Turn90Left());
-		addSequential(new DriveForward(2, .75));
-		addParallel(new AutoLift(2, .05));
+		addParallel (new timedintake());
+		addSequential(new AutoLift(2, .65));
+		addParallel (new timedintake());
+		addSequential(new DriveForward(1.6,.75));
+		addParallel (new timedintake());
+		addSequential (new WaitCommand(2));
 		addSequential(new ClawOutput());
-		Timer.delay(1);
-		Robot.clawRollers.stop();
+		addSequential (new WaitCommand(1));
+		addSequential (new ClawStop());
 		//Robot.CenterAutoFinished = true;
         // Add Commands here:
         // e.g. addSequential(new Command1());

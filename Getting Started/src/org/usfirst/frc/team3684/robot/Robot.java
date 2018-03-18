@@ -16,6 +16,7 @@ import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
 import org.usfirst.frc.team3684.robot.commands.LeftAuto;
 import org.usfirst.frc.team3684.robot.commands.RightAuto;
 import org.usfirst.frc.team3684.robot.commands.TeleopLift;
+import org.usfirst.frc.team3684.robot.commands.Turn90Left;
 import org.usfirst.frc.team3684.robot.subsystems.ClawRollers;
 import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
@@ -31,6 +32,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -46,31 +48,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
-		Command m_autonomousCommand;
+public class Robot extends TimedRobot {
+		public static Command m_autonomousCommand;
 		Command m_teleopCommand;
 		//idk what this does tbh
 		SendableChooser m_autoposition= new SendableChooser<>();
 		SendableChooser m_scaleorswitch= new SendableChooser<>();
 		//making our autoposition and scale/switch preference as choosables
+	public static boolean hasgameData;
 	public static boolean isAutonomous;
 	public static boolean isTeleop;
 	public static boolean scaleright;
 	public static boolean ourswitchright;
 	public static boolean theirswitchright;
 	public static boolean switchselected;
-	public static boolean DriveForwardFinished;
+	public static boolean LeftAutoFinished;
 	public static boolean CenterAutoFinished;
 	public static boolean RightAutoFinished;
-	public static boolean LeftAutoFinished;
-	public static boolean TurnLeftFinished;
-	public static boolean TurnRightFinished;
-	public static boolean AutoLiftFinished;
 	public static DigitalInput limitswitchtop;
 	public static DigitalInput limitswitchbottom;
 	//adding booleans for autonomous to use switch or scale.
 
-	private Timer m_timer = new Timer();
 	//starting timer
 	public static OI m_oi;
 	//Instantiating OI
@@ -83,6 +81,7 @@ public class Robot extends IterativeRobot {
 	
 	//initializing drivetrain for use with gyros
 	public static AnalogGyro gyro;
+	
 	//more experimental driving code
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -116,6 +115,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Lift", forkLift);
 		SmartDashboard.putData("gyro", gyro);
 		SmartDashboard.putData("DriveForward", new DriveForward(3, .5));
+		SmartDashboard.putData("DriveMotors", Drivetrain.myDrive);
+		SmartDashboard.putData("TurnLeft", new Turn90Left());
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
 		//adding stuff to smartDashboard
@@ -127,47 +128,50 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		gyro.reset();
 		Robot.isAutonomous = true;
-		m_timer.reset();
-		m_timer.start();
 		//restarting timer
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L')
-		{
-			ourswitchright = false;
+			String gameData;
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			if(gameData!=null) {
+				hasgameData = true;
+				if(gameData.charAt(0) == 'L')
+				{
+					ourswitchright = false;
+						
+				} else {
+					ourswitchright = true;
+				}
+				if(gameData.charAt(1) == 'L')
+				{
+					scaleright = false;
+				}
+				else {
+					scaleright = true;
+				}
+				if(gameData.charAt(2) == 'L')
+				{
+					theirswitchright = false;
+				}
+				else {
+					theirswitchright = true;
+				}
 				
-		} else {
-			ourswitchright = true;
-		}
-		if(gameData.charAt(1) == 'L')
-		{
-			scaleright = false;
-		}
-		else {
-			scaleright = true;
-		}
-		if(gameData.charAt(2) == 'L')
-		{
-			theirswitchright = false;
-		}
-		else {
-			theirswitchright = true;
-		}
-		switchselected = (boolean) m_scaleorswitch.getSelected();
+				switchselected = (boolean) m_scaleorswitch.getSelected();
+				
+				m_autonomousCommand = (Command) m_autoposition.getSelected();
+				if (m_autonomousCommand != null) {
+				m_autonomousCommand.start();
+				}
+				}
 		
-		m_autonomousCommand = (Command) m_autoposition.getSelected();
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
-	}
-		else {
-			m_autonomousCommand= new DriveForward(5, .5); 
-			m_autonomousCommand.start();
-		}//adding booleans for use in autonomous as well as choosing which autonomous to use
+
+		//adding booleans for use in autonomous as well as choosing which autonomous to use
 		
 		SmartDashboard.putBoolean("ourswitchonright?", ourswitchright);
 		SmartDashboard.putBoolean("scaleonright?", scaleright);
 		SmartDashboard.putBoolean("theirswitchonright?", theirswitchright);
+
 	}
 
 	/**
@@ -178,12 +182,15 @@ public class Robot extends IterativeRobot {
 		
 		Scheduler.getInstance().run();
 	}
+	
 
 	/**
 	 * This function is called once each time the robot enters teleoperated mode.
 	 */
 	@Override
+
 	public void teleopInit() {
+		gyro.reset();
 		Robot.isTeleop = true;
 		Robot.isAutonomous = false;
 		if (m_autonomousCommand != null) {

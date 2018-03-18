@@ -12,7 +12,7 @@ public class RightScaleAuto extends CommandGroup {
 
     public RightScaleAuto() {
 
-		addSequential(new DriveForward(5,.5));
+		addSequential(new DriveForward(4,.6));
 		/*
 		addParallel (new AutoLiftFlip());
 		addSequential(new AutoLift(.75, 1000));
