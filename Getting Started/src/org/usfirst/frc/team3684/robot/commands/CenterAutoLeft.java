@@ -16,13 +16,13 @@ public class CenterAutoLeft extends CommandGroup {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	addSequential(new DriveForward(1,.75));
+    	addSequential (new AutoLift(.75,.5));
 		addParallel (new AutoLiftFlip());
-		addSequential(new AutoLift(1, .75));
 		addParallel (new timedintake());
+		addSequential(new AutoLift(1.5, .5));
+		addParallel(new timedintake());
 		addParallel (new AutoLiftFlip());
-		addSequential(new Turn90Left());
-		addParallel (new timedintake());
-		addParallel(new AutoLiftFlipAway());
+		addSequential(new AutoLiftFlipAway());
 		addSequential(new DriveForward(2,.75));
 		addParallel (new timedintake());
 		addSequential(new turn90right());

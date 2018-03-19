@@ -9,11 +9,15 @@ public class AutoDriveForward extends CommandGroup {
 
     public AutoDriveForward() {
     	addSequential(new DriveForward(1,.75));
+    	addSequential (new AutoLift(.75,.5));
 		addParallel (new AutoLiftFlip());
-		addSequential(new AutoLift(1, .75));
+		addParallel (new timedintake());
+		addSequential(new AutoLift(1.5, .5));
+		addParallel(new timedintake());
 		addParallel (new AutoLiftFlip());
 		addSequential(new AutoLiftFlipAway());
-		addSequential (new DriveForward (2.75,.8));
+		addSequential (new DriveForward (2,.75));
+		addParallel(new timedintake());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

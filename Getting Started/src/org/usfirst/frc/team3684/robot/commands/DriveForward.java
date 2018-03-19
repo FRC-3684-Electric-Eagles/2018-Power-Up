@@ -59,7 +59,7 @@ public class DriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Drivetrain.myDrive.arcadeDrive (-power, (Robot.gyro.getAngle()-setpoint)*.2);
+    	Drivetrain.myDrive.arcadeDrive (-power, (Robot.gyro.getAngle()-setpoint)/360);
 
     	
     	}

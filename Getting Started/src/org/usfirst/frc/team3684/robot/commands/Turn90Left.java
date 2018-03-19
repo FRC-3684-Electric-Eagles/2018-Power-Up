@@ -27,9 +27,8 @@ public class Turn90Left extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-			Drivetrain.myDrive.tankDrive(-.65, .65);
+			Drivetrain.myDrive.tankDrive(-.75, .75);
 	    	currentHeading = Robot.gyro.getAngle();
-			Timer.delay(.05);
     	
     }
 

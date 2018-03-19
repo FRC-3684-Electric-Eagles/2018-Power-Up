@@ -25,10 +25,8 @@ public class Drivetrain extends Subsystem {
 	
 	public Drivetrain() {
 		leftMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_BACKLEFT);
-		leftMotor.setInverted(true);
 		rightMotor = new CANTalon(RobotMap.DRIVETRAIN_Talon_RIGHT);
 		backleftMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_LEFT);
-		backleftMotor.setInverted(true);
 		backrightMotor = new CANTalon (RobotMap.DRIVETRAIN_Talon_BACKRIGHT);
 		m_left = new SpeedControllerGroup(Drivetrain.backleftMotor, Drivetrain.leftMotor);
 		m_right  = new SpeedControllerGroup(Drivetrain.backrightMotor, Drivetrain.rightMotor);

@@ -13,13 +13,13 @@ public class CenterAutoRight extends CommandGroup {
 
     public CenterAutoRight() {
     	addSequential(new DriveForward(1,.75));
+    	addSequential (new AutoLift(.75,.5));
 		addParallel (new AutoLiftFlip());
-		addSequential(new AutoLift(1, .75));
 		addParallel (new timedintake());
+		addSequential(new AutoLift(1.5, .5));
+		addParallel(new timedintake());
 		addParallel (new AutoLiftFlip());
-		addSequential(new turn90right());
-		addParallel (new timedintake());
-		addParallel(new AutoLiftFlipAway());
+		addSequential(new AutoLiftFlipAway());
 		addSequential(new DriveForward(2,.75));
 		addParallel (new timedintake());
 		addSequential(new Turn90Left());

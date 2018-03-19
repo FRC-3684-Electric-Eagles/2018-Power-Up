@@ -10,6 +10,7 @@ package org.usfirst.frc.team3684.robot;
 
 
 
+import org.usfirst.frc.team3684.robot.commands.AutoDriveForward;
 import org.usfirst.frc.team3684.robot.commands.CenterAuto;
 import org.usfirst.frc.team3684.robot.commands.DriveForward;
 import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
@@ -17,6 +18,7 @@ import org.usfirst.frc.team3684.robot.commands.LeftAuto;
 import org.usfirst.frc.team3684.robot.commands.RightAuto;
 import org.usfirst.frc.team3684.robot.commands.TeleopLift;
 import org.usfirst.frc.team3684.robot.commands.Turn90Left;
+import org.usfirst.frc.team3684.robot.commands.turn90right;
 import org.usfirst.frc.team3684.robot.subsystems.ClawRollers;
 import org.usfirst.frc.team3684.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3684.robot.subsystems.FlipUp;
@@ -112,6 +114,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("DriveForward", new DriveForward(3, .5));
 		SmartDashboard.putData("DriveMotors", Drivetrain.myDrive);
 		SmartDashboard.putData("TurnLeft", new Turn90Left());
+		SmartDashboard.putData("TurnRight", new turn90right());
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
 		//useful data for shuffleBoard.
@@ -152,6 +155,7 @@ public class Robot extends TimedRobot {
 			switchselected = (boolean) m_scaleorswitch.getSelected();
 				
 			m_autonomousCommand = (Command) m_autoposition.getSelected();
+			//m_autonomousCommand = new AutoDriveForward();
 			if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 			}
