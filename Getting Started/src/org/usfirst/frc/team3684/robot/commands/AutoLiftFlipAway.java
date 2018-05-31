@@ -21,7 +21,7 @@ public class AutoLiftFlipAway extends Command {
         }
 
         // Called just before this Command runs the first time
-        protected void initialize() {
+        protected void initialize() {																		
         	timer.reset();
         	timer.start();
         	
@@ -30,7 +30,7 @@ public class AutoLiftFlipAway extends Command {
         // Called repeatedly when this Command is scheduled to run
         protected void execute() {
         
-        		FlipUp.flipMotor.set(-.2);
+        		FlipUp.flipMotor.set(-.075);
         	
         	}
         	

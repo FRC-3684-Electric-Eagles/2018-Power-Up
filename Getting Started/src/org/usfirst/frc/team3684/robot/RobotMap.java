@@ -38,8 +38,9 @@ public class RobotMap {
 	public static final int Turn_Left = 4;
 	public static final int Flip_Forward = 5;
 	public static final int Flip_Backward = 3;
-	public static final int ClawIntake = 2;
 	public static final int ClawOutput = 1;
+	public static final int ClawIntake = 1;
+	public static final int MaxClawOutput = 1;
 	//initializing buttons
 	public static int DRIVETRAIN_Talon_LEFT = 2;
 	public static int DRIVETRAIN_Talon_RIGHT = 3;

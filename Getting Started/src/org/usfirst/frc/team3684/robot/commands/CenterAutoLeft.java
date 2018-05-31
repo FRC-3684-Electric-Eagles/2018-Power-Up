@@ -13,24 +13,17 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class CenterAutoLeft extends CommandGroup {
 
     public CenterAutoLeft() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	addSequential(new DriveForward(1,.75));
     	addSequential (new AutoLift(.75,.5));
 		addParallel (new AutoLiftFlip());
-		addParallel (new timedintake());
 		addSequential(new AutoLift(1.5, .5));
-		addParallel(new timedintake());
 		addParallel (new AutoLiftFlip());
 		addSequential(new AutoLiftFlipAway());
-		addSequential(new DriveForward(2,.75));
-		addParallel (new timedintake());
-		addSequential(new turn90right());
-		addParallel (new timedintake());
+		addSequential(new Turn90Left());
 		addSequential(new AutoLift(2.1, .65));
-		addParallel (new timedintake());
-		addSequential(new DriveForward(2.75,.75));
-		addParallel (new timedintake());
+		addSequential(new DriveForward(1.6,.75));
+		addSequential(new turn90right());
+		addSequential(new DriveForward(1,.6));
 		addSequential (new WaitCommand(2));
 		addSequential(new ClawOutput());
 		addSequential (new WaitCommand(1));

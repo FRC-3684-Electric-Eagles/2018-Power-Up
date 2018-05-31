@@ -47,10 +47,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void setMotorsRaw(double left, double right) {
-    	leftMotor.set(left);
-    	backleftMotor.set(left);
-    	rightMotor.set(right);		
-    	backrightMotor.set(right);
+    	myDrive.tankDrive(left, right);
     	//actually setting the motors to what I told them to do
 	}
     

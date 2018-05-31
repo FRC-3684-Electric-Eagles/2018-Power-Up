@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Turn90Left extends Command {
 	public double staticHeading;
 	public double currentHeading;
-    public Turn90Left() {
+	public double m_angle;
+    public Turn90Left(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	m_angle = angle;
     	requires(Robot.driveTrain);
     	
     }
@@ -27,14 +29,14 @@ public class Turn90Left extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-			Drivetrain.myDrive.tankDrive(-.75, .75);
+			Drivetrain.myDrive.tankDrive(-.5, .5);
 	    	currentHeading = Robot.gyro.getAngle();
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return currentHeading <= staticHeading-75;
+    	return currentHeading <= staticHeading-(m_angle-5);
     }
     // Called once after isFinished returns true
     protected void end() {

@@ -22,7 +22,7 @@ public class ClawIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.clawRollers.setMotors(.25,-.25);
+    	Robot.clawRollers.setMotors(-.35,.35);
     	Timer.delay(.1);
     	//motors spin, going in
     }

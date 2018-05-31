@@ -37,18 +37,16 @@ public class OI {
 	
 	public OI() {
 	//creating buttons
-	Button leftbutton5= new JoystickButton (m_leftstick, RobotMap.Turn_Left);
-	Button leftbutton4= new JoystickButton (m_leftstick, RobotMap.Flip_Forward);
-	Button leftbutton6= new JoystickButton (m_leftstick, RobotMap.Flip_Backward);
-	Button rightbutton5= new JoystickButton (m_rightstick, RobotMap.Turn_Right);
-	Button opbutton2 = new JoystickButton (m_operatorstick, RobotMap.ClawIntake);
+	Button right_trigger = new JoystickButton (m_rightstick, RobotMap.ClawIntake);
+	Button left_trigger = new JoystickButton (m_leftstick, RobotMap.MaxClawOutput);
 	Button opbutton1 = new JoystickButton (m_operatorstick, RobotMap.ClawOutput);
 	Button opbutton3 = new JoystickButton (m_operatorstick, RobotMap.Flip_Backward);
 	Button opbutton5 = new JoystickButton (m_operatorstick, RobotMap.Flip_Forward);
 	
 	//binding buttons to commands
+	left_trigger.whileHeld(new ClawIntake());
 	opbutton1.whileHeld(new ClawOutput());
-	opbutton2.whileHeld(new ClawIntake());
+	right_trigger.whileHeld(new ClawIntake());
 	opbutton3.whileHeld(new LiftFlip());
 	opbutton5.whileHeld(new LiftFlipAway());
 	

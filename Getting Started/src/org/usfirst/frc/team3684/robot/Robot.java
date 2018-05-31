@@ -11,6 +11,7 @@ package org.usfirst.frc.team3684.robot;
 
 
 import org.usfirst.frc.team3684.robot.commands.AutoDriveForward;
+import org.usfirst.frc.team3684.robot.commands.AutoLiftFlipAway;
 import org.usfirst.frc.team3684.robot.commands.CenterAuto;
 import org.usfirst.frc.team3684.robot.commands.DriveForward;
 import org.usfirst.frc.team3684.robot.commands.DriveTrain_TankDrive;
@@ -115,6 +116,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("DriveMotors", Drivetrain.myDrive);
 		SmartDashboard.putData("TurnLeft", new Turn90Left());
 		SmartDashboard.putData("TurnRight", new turn90right());
+		SmartDashboard.putData("liftflipaway", new AutoLiftFlipAway());
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture();
 		//useful data for shuffleBoard.
